@@ -127,6 +127,20 @@ public class Document {
         this.mapCategoriesToIndex.add(new CategoryAndIndex(category, indexTermOrig));
     }
 
+    public void addSeveralCategories(List<CategoryAndIndex> cats) {
+        if (cats == null) {
+            return;
+        }
+        if (listCategories == null) {
+            listCategories = new ConcurrentLinkedQueue();
+        }
+
+        for (CategoryAndIndex cat : cats) {
+            this.listCategories.add(cat.getCategory());
+        }
+        this.mapCategoriesToIndex.addAll(cats);
+    }
+
     public void deleteFromListCategories(String category) {
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
