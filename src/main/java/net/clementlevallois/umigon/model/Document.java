@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import net.clementlevallois.umigon.model.Categories.Category;
 
 /**
  *
@@ -25,15 +26,15 @@ public class Document {
     private List<String> mentions;
     private Set<String> allTerms;
     private Set<String> allEmojis;
-    private Queue<String> listCategories;
+    private Queue<Category> listCategories;
     private Queue<String> listPositive;
     private Queue<String> listNegative;
     private String trainingSetCat;
-    private String sentiment;
+    private Category sentiment;
     private String naturalness;
     private Queue<CategoryAndIndex> mapCategoriesToIndex;
     private boolean isNegative;
-    private Integer finalNote;
+    private Category finalNote;
     private boolean isPositive;
     private int id;
 
@@ -46,7 +47,7 @@ public class Document {
         allTerms = new HashSet();
         allEmojis = new HashSet();
         hashtags = new ArrayList();
-        sentiment = "";
+        sentiment = Category._10;
     }
 
     public Document(String text) {
@@ -60,7 +61,7 @@ public class Document {
         allTerms = new HashSet();
         allEmojis = new HashSet();
         hashtags = new ArrayList();
-        sentiment = "";
+        sentiment = Category._10;
     }
 
     public String getText() {
@@ -95,7 +96,7 @@ public class Document {
         this.mentions = mentions;
     }
 
-    public Queue<String> getListCategories() {
+    public Queue<Category> getListCategories() {
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
@@ -103,7 +104,7 @@ public class Document {
         return listCategories;
     }
 
-    public void setListCategories(Queue<String> listCategories) {
+    public void setListCategories(Queue<Category> listCategories) {
         this.listCategories = listCategories;
     }
 
@@ -115,7 +116,7 @@ public class Document {
         this.trainingSetCat = trainingSetCat;
     }
 
-    public void addToListCategories(String category, Integer indexTermOrig) {
+    public void addToListCategories(Category category, Integer indexTermOrig) {
         if (category == null) {
             return;
         }
@@ -141,29 +142,35 @@ public class Document {
         this.mapCategoriesToIndex.addAll(cats);
     }
 
-    public void deleteFromListCategories(String category) {
+    public void deleteFromListCategories(Category category) {
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
-        Iterator<String> catIt = listCategories.iterator();
+        Iterator<Category> catIt = listCategories.iterator();
         while (catIt.hasNext()) {
-            String string = catIt.next();
-            if (string.equals(category)) {
+            Category existingCategory = catIt.next();
+            if (existingCategory.equals(category)) {
                 catIt.remove();
             }
         }
     }
 
-    public String getSentiment() {
-        return this.sentiment;
+    public Category getSentiment() {
+        if (listCategories.contains(Category._11) || listCategories.contains(Category._111)){
+            return Category._11;
+        }
+        if (listCategories.contains(Category._12)){
+            return Category._12;
+        }
+        return Category._10;
     }
 
     public boolean isIsPositive() {
-        return sentiment.equals("positive");
+        return (listCategories.contains(Category._11) || listCategories.contains(Category._111));
     }
 
     public boolean isPromoted() {
-        return listCategories.contains("061") || listCategories.contains("0611");
+        return listCategories.contains(Category._61) || listCategories.contains(Category._611);
     }
 
     public void setIsPositive(boolean isPositive) {
@@ -171,22 +178,22 @@ public class Document {
     }
 
     public boolean isIsNegative() {
-        return sentiment.equals("negative");
+        return listCategories.contains(Category._12);
     }
 
     public void setIsNegative(boolean isNegative) {
         this.isNegative = isNegative;
     }
 
-    public Integer getFinalNote() {
+    public Category getFinalNote() {
         return finalNote;
     }
 
-    public void setFinalNote(int finalNote) {
+    public void setFinalNote(Category finalNote) {
         this.finalNote = finalNote;
     }
 
-    public void setSentiment(String sentiment) {
+    public void setSentiment(Category sentiment) {
         this.sentiment = sentiment;
     }
 
@@ -194,10 +201,10 @@ public class Document {
         return mapCategoriesToIndex;
     }
 
-    public Set<Integer> getAllIndexesForCategory(String cat) {
+    public Set<Integer> getAllIndexesForCategory(Category cat) {
         Set<Integer> setIndexes = new HashSet();
         for (CategoryAndIndex catAndIndex : mapCategoriesToIndex) {
-            String category = (String) catAndIndex.getCategory();
+            Category category = catAndIndex.getCategory();
             if (category.equals(cat)) {
                 setIndexes.add((Integer) catAndIndex.getIndex());
             }
@@ -220,9 +227,9 @@ public class Document {
         if (listCategories.isEmpty()) {
             return "NO CATEGORY";
         }
-        Iterator<String> setCategoriesIterator = listCategories.iterator();
+        Iterator<Category> setCategoriesIterator = listCategories.iterator();
         StringBuilder sb = new StringBuilder();
-        String cat;
+        Category cat;
         Categories categories = new Categories();
         categories.populate();
         while (setCategoriesIterator.hasNext()) {
@@ -271,7 +278,7 @@ public class Document {
     }
 
     public String getNaturalness() {
-        if (listCategories.contains("061") || listCategories.contains("0611")) {
+        if (listCategories.contains(Category._61) || listCategories.contains(Category._611)) {
             return "promoted";
         } else {
             return "organic";

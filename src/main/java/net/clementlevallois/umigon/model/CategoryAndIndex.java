@@ -5,25 +5,27 @@
  */
 package net.clementlevallois.umigon.model;
 
+import net.clementlevallois.umigon.model.Categories.Category;
+
 /**
  *
  * @author LEVALLOIS
  */
 public class CategoryAndIndex {
     
-    private String category;
+    private Category category;
     private int index;
 
-    public CategoryAndIndex(String category, int index) {
+    public CategoryAndIndex(Category category, int index) {
         this.category = category;
         this.index = index;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
