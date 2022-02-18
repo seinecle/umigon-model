@@ -15,10 +15,12 @@ public class CategoryAndIndex {
     
     private Category category;
     private int index;
+    private String term;
 
-    public CategoryAndIndex(Category category, int index) {
+    public CategoryAndIndex(Category category, int index, String term) {
         this.category = category;
         this.index = index;
+        this.term = term;
     }
 
     public Category getCategory() {
@@ -36,6 +38,16 @@ public class CategoryAndIndex {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+    
+    
     
     
     

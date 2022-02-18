@@ -24,7 +24,6 @@ public class Document {
     private String language;
     private List<String> hashtags;
     private List<String> mentions;
-    private Set<String> allTerms;
     private Set<String> allEmojis;
     private Queue<Category> listCategories;
     private Queue<String> listPositive;
@@ -32,19 +31,19 @@ public class Document {
     private String trainingSetCat;
     private Category sentiment;
     private String naturalness;
-    private Queue<CategoryAndIndex> mapCategoriesToIndex;
+    private Queue<CategoryAndIndex> categoriesToIndexWithTerms;
     private boolean isNegative;
     private Category finalNote;
     private boolean isPositive;
     private int id;
+    private boolean flaggedAsFalseLabel;
 
     public Document() {
         listCategories = new ConcurrentLinkedQueue();
         listPositive = new ConcurrentLinkedQueue();
         listNegative = new ConcurrentLinkedQueue();
-        mapCategoriesToIndex = new ConcurrentLinkedQueue();
+        categoriesToIndexWithTerms = new ConcurrentLinkedQueue();
         trainingSetCat = "";
-        allTerms = new HashSet();
         allEmojis = new HashSet();
         hashtags = new ArrayList();
         sentiment = Category._10;
@@ -55,10 +54,9 @@ public class Document {
         hashtags = new ArrayList();
         mentions = new ArrayList();
         listCategories = new ConcurrentLinkedQueue();
-        mapCategoriesToIndex = new ConcurrentLinkedQueue();
+        categoriesToIndexWithTerms = new ConcurrentLinkedQueue();
         listPositive = new ConcurrentLinkedQueue();
         listNegative = new ConcurrentLinkedQueue();
-        allTerms = new HashSet();
         allEmojis = new HashSet();
         hashtags = new ArrayList();
         sentiment = Category._10;
@@ -116,16 +114,16 @@ public class Document {
         this.trainingSetCat = trainingSetCat;
     }
 
-    public void addToListCategories(Category category, Integer indexTermOrig) {
-        if (category == null) {
+    public void addToListCategories(Category category, Integer indexTermOrig, String term) {
+        if (category == null || indexTermOrig == null) {
             return;
         }
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
 
-        this.listCategories.add(category);
-        this.mapCategoriesToIndex.add(new CategoryAndIndex(category, indexTermOrig));
+        listCategories.add(category);
+        categoriesToIndexWithTerms.add(new CategoryAndIndex(category, indexTermOrig, term));
     }
 
     public void addSeveralCategories(List<CategoryAndIndex> cats) {
@@ -139,7 +137,7 @@ public class Document {
         for (CategoryAndIndex cat : cats) {
             this.listCategories.add(cat.getCategory());
         }
-        this.mapCategoriesToIndex.addAll(cats);
+        this.categoriesToIndexWithTerms.addAll(cats);
     }
 
     public void deleteFromListCategories(Category category) {
@@ -156,10 +154,10 @@ public class Document {
     }
 
     public Category getSentiment() {
-        if (listCategories.contains(Category._11) || listCategories.contains(Category._111)){
+        if (listCategories.contains(Category._11) || listCategories.contains(Category._111)) {
             return Category._11;
         }
-        if (listCategories.contains(Category._12)){
+        if (listCategories.contains(Category._12)) {
             return Category._12;
         }
         return Category._10;
@@ -189,21 +187,39 @@ public class Document {
         return finalNote;
     }
 
-    public void setFinalNote(Category finalNote) {
-        this.finalNote = finalNote;
+    public void setFinalNote(List<CategoryAndIndex> categoriesAndIndex) {
+        if (categoriesAndIndex == null || categoriesAndIndex.isEmpty()) {
+            return;
+        }
+        Category category = Category._10; // neutral
+        int index = -1;
+        for (CategoryAndIndex categoryAndIndex : categoriesAndIndex) {
+            int currIndex = categoryAndIndex.getIndex();
+            if (currIndex > index) {
+                index = currIndex;
+                category = categoryAndIndex.getCategory();
+            }
+        }
+
+        if (category.equals(Category._12)) {
+            this.finalNote = Category._12;
+        } else if (category.equals(Category._11)) {
+            this.finalNote = Category._11;
+        }
     }
 
     public void setSentiment(Category sentiment) {
         this.sentiment = sentiment;
+        listCategories.add(sentiment);
     }
 
-    public Queue<CategoryAndIndex> getMapCategoriesToIndex() {
-        return mapCategoriesToIndex;
+    public Queue<CategoryAndIndex> getCategoriesToIndexWithTerms() {
+        return categoriesToIndexWithTerms;
     }
 
     public Set<Integer> getAllIndexesForCategory(Category cat) {
         Set<Integer> setIndexes = new HashSet();
-        for (CategoryAndIndex catAndIndex : mapCategoriesToIndex) {
+        for (CategoryAndIndex catAndIndex : categoriesToIndexWithTerms) {
             Category category = catAndIndex.getCategory();
             if (category.equals(cat)) {
                 setIndexes.add((Integer) catAndIndex.getIndex());
@@ -279,7 +295,7 @@ public class Document {
 
     public String getNaturalness() {
         if (listCategories.contains(Category._61) || listCategories.contains(Category._611)) {
-            return "promoted";
+            return Category._61.toString();
         } else {
             return "organic";
         }
@@ -287,6 +303,9 @@ public class Document {
 
     public void setNaturalness(String naturalness) {
         this.naturalness = naturalness;
+        if (naturalness.equals(Category._61.toString())){
+            listCategories.add(Category._61);
+        }
     }
 
     @Override
@@ -310,14 +329,6 @@ public class Document {
         this.listNegative = listNegative;
     }
 
-    public Set<String> getAllTerms() {
-        return allTerms;
-    }
-
-    public void setAllTerms(Set<String> allTerms) {
-        this.allTerms = allTerms;
-    }
-
     public Set<String> getAllEmojis() {
         return allEmojis;
     }
@@ -325,5 +336,15 @@ public class Document {
     public void setAllEmojis(Set<String> allEmojis) {
         this.allEmojis = allEmojis;
     }
+
+    public boolean isFlaggedAsFalseLabel() {
+        return flaggedAsFalseLabel;
+    }
+
+    public void setFlaggedAsFalseLabel(boolean flaggedAsFalseLabel) {
+        this.flaggedAsFalseLabel = flaggedAsFalseLabel;
+    }
+    
+    
 
 }

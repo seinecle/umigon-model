@@ -33,7 +33,7 @@ public class Categories {
         mapCategories.put(Category._12, "negative tone");
         mapCategories.put(Category._13, "possibly ironic tone");
         mapCategories.put(Category._14, "fun tone");
-        mapCategories.put(Category._17, "hyper satisfaction");
+        mapCategories.put(Category._17, "delight");
 
         //
         // *** 2 *** intensity
@@ -92,7 +92,7 @@ public class Categories {
         _12("negative tone"),
         _13("possibly ironic tone"),
         _14("fun tone"),
-        _17("hyper satisfaction"),
+        _17("delight"),
         _20("neutral intensity"),
         _21("weak intensity"),
         _22("strong intensity"),
