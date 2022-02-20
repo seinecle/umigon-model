@@ -5,6 +5,7 @@ package net.clementlevallois.umigon.model;
  * and open the template in the editor.
  */
 //import Utils.Pair;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ import net.clementlevallois.umigon.model.Categories.Category;
  *
  * @author C. Levallois
  */
-public class Document {
+public class Document implements Serializable {
 
     private String text;
     private String language;
@@ -28,14 +29,13 @@ public class Document {
     private Queue<Category> listCategories;
     private Queue<String> listPositive;
     private Queue<String> listNegative;
-    private String trainingSetCat;
     private Category sentiment;
     private String naturalness;
     private Queue<CategoryAndIndex> categoriesToIndexWithTerms;
     private boolean isNegative;
     private Category finalNote;
     private boolean isPositive;
-    private int id;
+    private String id;
     private boolean flaggedAsFalseLabel;
 
     public Document() {
@@ -43,7 +43,6 @@ public class Document {
         listPositive = new ConcurrentLinkedQueue();
         listNegative = new ConcurrentLinkedQueue();
         categoriesToIndexWithTerms = new ConcurrentLinkedQueue();
-        trainingSetCat = "";
         allEmojis = new HashSet();
         hashtags = new ArrayList();
         sentiment = Category._10;
@@ -106,14 +105,6 @@ public class Document {
         this.listCategories = listCategories;
     }
 
-    public String getTrainingSetCat() {
-        return trainingSetCat;
-    }
-
-    public void setTrainingSetCat(String trainingSetCat) {
-        this.trainingSetCat = trainingSetCat;
-    }
-
     public void addToListCategories(Category category, Integer indexTermOrig, String term) {
         if (category == null || indexTermOrig == null) {
             return;
@@ -154,11 +145,11 @@ public class Document {
     }
 
     public Category getSentiment() {
-        if (listCategories.contains(Category._11) || listCategories.contains(Category._111)) {
-            return Category._11;
-        }
         if (listCategories.contains(Category._12)) {
             return Category._12;
+        }
+        if (listCategories.contains(Category._11) || listCategories.contains(Category._111)) {
+            return Category._11;
         }
         return Category._10;
     }
@@ -228,11 +219,11 @@ public class Document {
         return setIndexes;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -303,7 +294,7 @@ public class Document {
 
     public void setNaturalness(String naturalness) {
         this.naturalness = naturalness;
-        if (naturalness.equals(Category._61.toString())){
+        if (naturalness.equals(Category._61.toString())) {
             listCategories.add(Category._61);
         }
     }
@@ -344,7 +335,5 @@ public class Document {
     public void setFlaggedAsFalseLabel(boolean flaggedAsFalseLabel) {
         this.flaggedAsFalseLabel = flaggedAsFalseLabel;
     }
-    
-    
 
 }

@@ -4,6 +4,7 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @author C. Levallois
  */
-public class Categories {
+public class Categories implements Serializable {
 
     private Map<Category, String> mapCategories;
 
@@ -84,7 +85,7 @@ public class Categories {
         return mapCategories.get(i);
     }
 
-    public enum Category {
+    public enum Category implements Serializable {
 
         _10("neutral tone"),
         _11("positive tone"),

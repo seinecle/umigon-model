@@ -5,14 +5,15 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import net.clementlevallois.umigon.model.Categories.Category;
 
 /**
  *
  * @author LEVALLOIS
  */
-public class CategoryAndIndex {
-    
+public class CategoryAndIndex implements Serializable {
+
     private Category category;
     private int index;
     private String term;
@@ -46,9 +47,5 @@ public class CategoryAndIndex {
     public void setTerm(String term) {
         this.term = term;
     }
-    
-    
-    
-    
-    
+
 }
