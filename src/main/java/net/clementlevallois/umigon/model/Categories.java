@@ -4,9 +4,15 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -14,124 +20,21 @@ import java.util.Map;
  */
 public class Categories implements Serializable {
 
-    private Map<Category, String> mapCategories;
+    private static Map<String, Category> mapIdsToCategories;
 
     public void populate() {
-        mapCategories = new HashMap();
-        //
-        // *** 0 *** errors
-        //
-        mapCategories.put(Category._9, "not suitable for semantic analysis");
-        mapCategories.put(Category._91, "english text not detected");
-        mapCategories.put(Category._92, "text too short or garbled");
-
-        //
-        // *** 1 *** tone
-        //
-        mapCategories.put(Category._10, "neutral tone");
-        mapCategories.put(Category._11, "positive tone");
-        mapCategories.put(Category._111, "positive tone, not promoted");
-        mapCategories.put(Category._12, "negative tone");
-        mapCategories.put(Category._13, "possibly ironic tone");
-        mapCategories.put(Category._14, "fun tone");
-        mapCategories.put(Category._17, "delight");
-
-        //
-        // *** 2 *** intensity
-        //
-        mapCategories.put(Category._20, "neutral intensity");
-        mapCategories.put(Category._21, "weak intensity");
-        mapCategories.put(Category._22, "strong intensity");
-
-        //
-        // *** 3 *** time
-        //
-        mapCategories.put(Category._3, "time");
-        mapCategories.put(Category._30, "neutral time");
-        mapCategories.put(Category._31, "past time");
-        mapCategories.put(Category._311, "immediate past");
-        mapCategories.put(Category._320, "present time");
-        mapCategories.put(Category._321, "immediate present: just now");
-        mapCategories.put(Category._33, "future time");
-        mapCategories.put(Category._331, "immediate future");
-
-        //
-        // *** 4 *** question
-        //
-        mapCategories.put(Category._40, "question");
-
-        //
-        // *** 5 *** type of address
-        //
-        mapCategories.put(Category._50, "neutral address");
-        mapCategories.put(Category._51, "subjective address");
-        mapCategories.put(Category._52, "direct address");
-        mapCategories.put(Category._521, "call to action");
-
-        //
-        // *** 6 *** topic
-        //
-        mapCategories.put(Category._60, "neutral topic");
-        mapCategories.put(Category._61, "commercial tone / promoted");
-        mapCategories.put(Category._611, "commercial offer");
-        mapCategories.put(Category._612, "tweeted by the client");
-        mapCategories.put(Category._6121, "a retweet of the client's tweet");
-        mapCategories.put(Category._62, "factual statement");
-        mapCategories.put(Category._621, "factual statement - statistics cited");
-
+        mapIdsToCategories = new HashMap();
+        InputStream inputStream = Categories.class.getResourceAsStream("categories_raw_data.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        List<String> categoriesAsTSV = br.lines().collect(Collectors.toList());
+        for (String categoryAsTSV : categoriesAsTSV) {
+            String[] elements = categoryAsTSV.split("\t");
+            Category category = new Category(elements[0], elements[1]);
+            mapIdsToCategories.put(category.getId(), category);
+        }
     }
 
-    public String get(Categories.Category i) {
-        return mapCategories.get(i);
-    }
-
-    public enum Category implements Serializable {
-
-        _10("neutral tone"),
-        _11("positive tone"),
-        _111("positive tone, not promoted"),
-        _12("negative tone"),
-        _13("possibly ironic tone"),
-        _14("fun tone"),
-        _17("delight"),
-        _20("neutral intensity"),
-        _21("weak intensity"),
-        _22("strong intensity"),
-        _3("time"),
-        _30("neutral time"),
-        _31("past time"),
-        _311("immediate past"),
-        _320("present time"),
-        _321("immediate present: just now"),
-        _33("future time"),
-        _331("immediate future"),
-        _40("question"),
-        _50("neutral address"),
-        _51("subjective address"),
-        _52("direct address"),
-        _521("call to action"),
-        _60("neutral topic"),
-        _61("commercial tone / promoted"),
-        _611("commercial offer"),
-        _612("tweeted by the client"),
-        _6121("a retweet of the client's tweet"),
-        _62("factual statement"),
-        _621("factual statement - statistics cited"),
-        _9("not suitable for semantic analysis"),
-        _91("english text not detected"),
-        _92("text too short or garbled");
-
-        private final String plainName;
-
-        Category(String plainName) {
-            this.plainName = plainName;
-        }
-
-        // the toString just returns the given name
-        @Override
-        public String toString() {
-            return this.plainName;
-        }
-
+    public static Category getCategory(String id) {
+        return mapIdsToCategories.get(id);
     }
 }

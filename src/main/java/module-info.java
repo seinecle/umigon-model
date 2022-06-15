@@ -6,4 +6,5 @@
 
 module net.clementlevallois.umigon.model {
     exports net.clementlevallois.umigon.model;
+    exports net.clementlevallois.umigon.model.heuristics;
 }
