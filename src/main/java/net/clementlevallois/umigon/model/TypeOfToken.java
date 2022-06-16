@@ -11,8 +11,8 @@ public class TypeOfToken {
 
     TypeOfTokenEnum typeOfTokenEnum;
 
-    public enum TypeOfTokenEnum {
-        NGRAM, ONOMATOPAE, TEXTO_SPEAK, EMOJI, PUNCTUATION, QUESTION, TOO_SHORT
+    public static enum TypeOfTokenEnum {
+        NGRAM, ONOMATOPAE, TEXTO_SPEAK, EMOJI, PUNCTUATION, QUESTION, TOO_SHORT, HASHTAG
     }
 
     public TypeOfTokenEnum getTypeOfTokenEnum() {
@@ -40,7 +40,6 @@ public class TypeOfToken {
             System.out.println("error in class TypeOfToken");
             System.out.println("type of token name " + typeOfTokeName + " is not a valid name");
         }
-
     }
 
 }

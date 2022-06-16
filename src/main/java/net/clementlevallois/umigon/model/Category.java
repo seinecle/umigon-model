@@ -3,72 +3,93 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author LEVALLOIS
  */
-public class Category {
+public class Category implements Serializable {
 
-    private String id;
-    private String description;
+    CategoryEnum categoryEnum;
 
-    public Category(String id, String description) {
-        this.id = id;
-        this.description = description;
-    }
+    public static enum CategoryEnum implements Serializable {
+        _10("neutral tone"),
+        _11("positive tone"),
+        _111("positive tone, not promoted"),
+        _12("negative tone"),
+        _13("possibly ironic tone"),
+        _14("fun tone"),
+        _17("delight"),
+        _20("neutral intensity"),
+        _21("weak intensity"),
+        _22("strong intensity"),
+        _3("time"),
+        _30("neutral time"),
+        _31("past time"),
+        _311("immediate past"),
+        _320("present time"),
+        _321("immediate present: just now"),
+        _33("future time"),
+        _331("immediate future"),
+        _40("question"),
+        _50("neutral address"),
+        _51("subjective address"),
+        _52("direct address"),
+        _521("call to action"),
+        _60("neutral topic"),
+        _61("commercial tone / promoted"),
+        _611("commercial offer"),
+        _612("tweeted by the client"),
+        _6121("a retweet of the client's tweet"),
+        _62("factual statement"),
+        _621("factual statement - statistics cited"),
+        _9("not suitable for semantic analysis"),
+        _91("english text not detected"),
+        _92("text too short or garbled");
 
-    public Category(String id) {
-        this.id = id;
-    }
+        private final String plainName;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        CategoryEnum(String plainName) {
+            this.plainName = plainName;
         }
-        if (obj == null) {
-            return false;
+
+        // the toString just returns the given name
+        @Override
+        public String toString() {
+            return this.plainName;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Category other = (Category) obj;
-        return Objects.equals(this.id, other.id);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[id= ").append(id);
-        sb.append(", description= ").append(description);
-        sb.append("]");
-        return sb.toString();
+    public Category(String catNumber) {
+        setCategoryEnumFromString(catNumber);
+    }
+
+    public CategoryEnum getCategoryEnum() {
+        return categoryEnum;
+    }
+
+    public void setCategoryEnum(CategoryEnum categoryEnum) {
+        this.categoryEnum = categoryEnum;
     }
     
     
+
+    public void setCategoryEnumFromString(String categoryEnumFromString) {
+
+        boolean isValidCategoryName = false;
+        for (Category.CategoryEnum c : Category.CategoryEnum.values()) {
+            if (c.name().equals(categoryEnumFromString)) {
+                isValidCategoryName = true;
+                this.categoryEnum = c;
+            }
+        }
+        if (!isValidCategoryName) {
+            System.out.println("error in class Category");
+            System.out.println("category name " + categoryEnumFromString + " is not a valid name");
+        }
+
+    }
+
 }

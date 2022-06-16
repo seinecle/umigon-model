@@ -3,7 +3,9 @@
  */
 package net.clementlevallois.umigon.model;
 
-import net.clementlevallois.umigon.model.heuristics.ConditionalExpression;
+import net.clementlevallois.umigon.model.Category.CategoryEnum;
+import net.clementlevallois.umigon.model.TypeOfToken.TypeOfTokenEnum;
+import net.clementlevallois.umigon.model.heuristics.ConditionalExpression.ConditionEnum;
 
 /**
  *
@@ -11,32 +13,51 @@ import net.clementlevallois.umigon.model.heuristics.ConditionalExpression;
  */
 public class ResultOneHeuristics {
 
-    private ConditionalExpression conditionalExpression;
+    private ConditionEnum conditionEnum;
     private String keywordMatched;
-    private Boolean matched;
-    private Category category;
-    private Integer indexTermMatched;
-    private String termMatched;
+    private Boolean tokenInvestigatedGetsMatched;
+    private CategoryEnum categoryEnum;
+    private Integer indexTokenInvestigated;
+    private String tokenInvestigated;
     private TypeOfToken.TypeOfTokenEnum typeOfTokenEnum;
 
     /**
      *
-     * @param category
+     * @param categoryEnum
      * @param indexTermMatched
      * @param termMatched
+     * @param typeOfTokenEnum
      */
-    public ResultOneHeuristics(Category category, Integer indexTermMatched, String termMatched) {
-        this.category = category;
-        this.indexTermMatched = indexTermMatched;
-        this.termMatched = termMatched;
+    public ResultOneHeuristics(Category.CategoryEnum categoryEnum, Integer indexTermMatched, String termMatched, TypeOfToken.TypeOfTokenEnum typeOfTokenEnum) {
+        this.categoryEnum = categoryEnum;
+        this.indexTokenInvestigated = indexTermMatched;
+        this.tokenInvestigated = termMatched;
+        this.typeOfTokenEnum = typeOfTokenEnum;
     }
 
-    public ConditionalExpression getConditionalExpression() {
-        return conditionalExpression;
+    /**
+     *
+     * @param categoryEnum
+     * @param typeOfTokenEnum
+     */
+    public ResultOneHeuristics(CategoryEnum categoryEnum, TypeOfTokenEnum typeOfTokenEnum) {
+        this.categoryEnum = categoryEnum;
+        this.typeOfTokenEnum = typeOfTokenEnum;
     }
 
-    public void setConditionalExpression(ConditionalExpression conditionalExpression) {
-        this.conditionalExpression = conditionalExpression;
+    public ResultOneHeuristics(ConditionEnum conditionalExpressionEnum, String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum) {
+        this.conditionEnum = conditionalExpressionEnum;
+        this.typeOfTokenEnum = typeOfTokenEnum;
+        this.tokenInvestigated = tokenInvestigated;
+        this.indexTokenInvestigated = indexTokenInvestigated;
+    }
+
+    public ConditionEnum getConditionEnum() {
+        return conditionEnum;
+    }
+
+    public void setConditionEnum(ConditionEnum conditionalExpressionEnum) {
+        this.conditionEnum = conditionalExpressionEnum;
     }
 
     public String getKeywordMatched() {
@@ -47,43 +68,43 @@ public class ResultOneHeuristics {
         this.keywordMatched = keywordMatched;
     }
 
-    public Boolean getMatched() {
-        return matched;
+    public Boolean getTokenInvestigatedGetsMatched() {
+        return tokenInvestigatedGetsMatched;
     }
 
-    public void setMatched(Boolean matched) {
-        this.matched = matched;
+    public void setTokenInvestigatedGetsMatched(Boolean tokenInvestigatedGetsMatched) {
+        this.tokenInvestigatedGetsMatched = tokenInvestigatedGetsMatched;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryEnum getCategoryEnum() {
+        return categoryEnum;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryEnum(CategoryEnum categoryEnum) {
+        this.categoryEnum = categoryEnum;
     }
 
-    public Integer getIndexTermMatched() {
-        return indexTermMatched;
+    public Integer getIndexTokenInvestigated() {
+        return indexTokenInvestigated;
     }
 
     public void setIndexTermMatched(int indexTermMatched) {
-        this.indexTermMatched = indexTermMatched;
+        this.indexTokenInvestigated = indexTermMatched;
     }
 
-    public String getTermMatched() {
-        return termMatched;
+    public String getTokenInvestigated() {
+        return tokenInvestigated;
     }
 
-    public void setTermMatched(String termMatched) {
-        this.termMatched = termMatched;
+    public void setTokenInvestigated(String tokenInvestigated) {
+        this.tokenInvestigated = tokenInvestigated;
     }
 
-    public TypeOfToken.TypeOfTokenEnum getTypeOfToken() {
+    public TypeOfTokenEnum getTypeOfToken() {
         return typeOfTokenEnum;
     }
 
-    public void setTypeOfToken(TypeOfToken.TypeOfTokenEnum typeOfTokenEnum) {
+    public void setTypeOfToken(TypeOfTokenEnum typeOfTokenEnum) {
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
 

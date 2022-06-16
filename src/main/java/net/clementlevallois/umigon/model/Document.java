@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import net.clementlevallois.umigon.model.Category.CategoryEnum;
 
 /**
  *
@@ -25,14 +26,14 @@ public class Document implements Serializable {
     private List<String> hashtags;
     private List<String> mentions;
     private Set<String> allEmojis;
-    private Queue<Category> listCategories;
+    private Queue<CategoryEnum> listCategories;
     private Queue<String> listPositive;
     private Queue<String> listNegative;
-    private Category sentiment;
+    private CategoryEnum sentiment;
     private String naturalness;
     private Queue<ResultOneHeuristics> resultsHeuristics;
     private boolean isNegative;
-    private Category finalNote;
+    private CategoryEnum finalNote;
     private boolean isPositive;
     private String id;
     private boolean flaggedAsFalseLabel;
@@ -91,7 +92,7 @@ public class Document implements Serializable {
         this.mentions = mentions;
     }
 
-    public Queue<Category> getListCategories() {
+    public Queue<CategoryEnum> getListCategories() {
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
@@ -99,32 +100,32 @@ public class Document implements Serializable {
         return listCategories;
     }
 
-    public void setListCategories(Queue<Category> listCategories) {
+    public void setListCategories(Queue<CategoryEnum> listCategories) {
         this.listCategories = listCategories;
     }
 
     public void addToListCategories(ResultOneHeuristics resultOneHeuristics) {
-        if (resultOneHeuristics.getCategory() == null) {
+        if (resultOneHeuristics.getCategoryEnum() == null) {
             return;
         }
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
 
-        listCategories.add(resultOneHeuristics.getCategory());
+        listCategories.add(resultOneHeuristics.getCategoryEnum());
         resultsHeuristics.add(resultOneHeuristics);
     }
 
-    public void addToListCategories(Category cat, int indexMatchedTerm, String matchedTerm) {
-        ResultOneHeuristics resultOneHeuristics = new ResultOneHeuristics(cat, indexMatchedTerm, matchedTerm);
-        if (resultOneHeuristics.getCategory() == null) {
+    public void addToListCategories(CategoryEnum cat, int indexMatchedTerm, String matchedTerm, TypeOfToken.TypeOfTokenEnum typeOfToken) {
+        ResultOneHeuristics resultOneHeuristics = new ResultOneHeuristics(cat, indexMatchedTerm, matchedTerm, typeOfToken);
+        if (resultOneHeuristics.getCategoryEnum() == null) {
             return;
         }
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
 
-        listCategories.add(resultOneHeuristics.getCategory());
+        listCategories.add(resultOneHeuristics.getCategoryEnum());
         resultsHeuristics.add(resultOneHeuristics);
     }
 
@@ -136,41 +137,41 @@ public class Document implements Serializable {
             listCategories = new ConcurrentLinkedQueue();
         }
 
-        for (ResultOneHeuristics cat : resultsHeuristics) {
-            this.listCategories.add(cat.getCategory());
+        for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
+            this.listCategories.add(resultOneHeuristics.getCategoryEnum());
         }
         this.resultsHeuristics.addAll(resultsHeuristics);
     }
 
-    public void deleteFromListCategories(Category category) {
+    public void deleteFromListCategories(CategoryEnum categoryEnum) {
         if (listCategories == null) {
             listCategories = new ConcurrentLinkedQueue();
         }
-        Iterator<Category> catIt = listCategories.iterator();
+        Iterator<CategoryEnum> catIt = listCategories.iterator();
         while (catIt.hasNext()) {
-            Category existingCategory = catIt.next();
-            if (existingCategory.equals(category)) {
+            CategoryEnum existingCategory = catIt.next();
+            if (existingCategory.equals(categoryEnum)) {
                 catIt.remove();
             }
         }
     }
 
-    public Category getSentiment() {
-        if (listCategories.contains(new Category("12"))) {
-            return new Category("12");
+    public CategoryEnum getSentiment() {
+        if (listCategories.contains(CategoryEnum._12)) {
+            return CategoryEnum._12;
         }
-        if (listCategories.contains(new Category("11")) || listCategories.contains(new Category("111"))) {
-            return new Category("11");
+        if (listCategories.contains(CategoryEnum._11) || listCategories.contains(CategoryEnum._111)) {
+            return CategoryEnum._11;
         }
-        return new Category("10");
+        return CategoryEnum._10;
     }
 
     public boolean isIsPositive() {
-        return (listCategories.contains(new Category("11")) || listCategories.contains(new Category("111")));
+        return (listCategories.contains(CategoryEnum._11) || listCategories.contains(CategoryEnum._111));
     }
 
     public boolean isPromoted() {
-        return listCategories.contains(new Category("61")) || listCategories.contains(new Category("611"));
+        return listCategories.contains(CategoryEnum._61) || listCategories.contains(CategoryEnum._611);
     }
 
     public void setIsPositive(boolean isPositive) {
@@ -178,14 +179,14 @@ public class Document implements Serializable {
     }
 
     public boolean isIsNegative() {
-        return listCategories.contains(new Category("12"));
+        return listCategories.contains(CategoryEnum._12);
     }
 
     public void setIsNegative(boolean isNegative) {
         this.isNegative = isNegative;
     }
 
-    public Category getFinalNote() {
+    public CategoryEnum getFinalNote() {
         return finalNote;
     }
 
@@ -193,24 +194,24 @@ public class Document implements Serializable {
         if (resultsHeuristics == null || resultsHeuristics.isEmpty()) {
             return;
         }
-        Category category = new Category("10"); // neutral
+        CategoryEnum categoryEnum = CategoryEnum._10; // neutral
         int index = -1;
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
-            int currIndex = resultOneHeuristics.getIndexTermMatched();
+            int currIndex = resultOneHeuristics.getIndexTokenInvestigated();
             if (currIndex > index) {
                 index = currIndex;
-                category = resultOneHeuristics.getCategory();
+                categoryEnum = resultOneHeuristics.getCategoryEnum();
             }
         }
 
-        if (category.equals(new Category("12"))) {
-            this.finalNote = category;
-        } else if (category.equals(new Category("11"))) {
-            this.finalNote = new Category("11");
+        if (categoryEnum.equals(CategoryEnum._12)) {
+            this.finalNote = categoryEnum;
+        } else if (categoryEnum.equals(CategoryEnum._11)) {
+            this.finalNote = CategoryEnum._11;
         }
     }
 
-    public void setSentiment(Category sentiment) {
+    public void setSentiment(CategoryEnum sentiment) {
         this.sentiment = sentiment;
         listCategories.add(sentiment);
     }
@@ -219,12 +220,12 @@ public class Document implements Serializable {
         return resultsHeuristics;
     }
 
-    public Set<Integer> getAllIndexesForCategory(Category cat) {
+    public Set<Integer> getAllIndexesForCategory(CategoryEnum catEnum) {
         Set<Integer> setIndexes = new HashSet();
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
-            Category category = resultOneHeuristics.getCategory();
-            if (category.equals(cat)) {
-                setIndexes.add(resultOneHeuristics.getIndexTermMatched());
+            CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
+            if (categoryEnum.equals(catEnum)) {
+                setIndexes.add(resultOneHeuristics.getIndexTokenInvestigated());
             }
         }
         return setIndexes;
@@ -245,14 +246,12 @@ public class Document implements Serializable {
         if (listCategories.isEmpty()) {
             return "NO CATEGORY";
         }
-        Iterator<Category> setCategoriesIterator = listCategories.iterator();
+        Iterator<CategoryEnum> setCategoriesIterator = listCategories.iterator();
         StringBuilder sb = new StringBuilder();
-        Category cat;
-        Categories categories = new Categories();
-        categories.populate();
+        CategoryEnum catEnum;
         while (setCategoriesIterator.hasNext()) {
-            cat = setCategoriesIterator.next();
-            sb.append(cat);
+            catEnum = setCategoriesIterator.next();
+            sb.append(catEnum);
             sb.append(" -- ");
         }
 
@@ -293,8 +292,8 @@ public class Document implements Serializable {
     }
 
     public String getNaturalness() {
-        if (listCategories.contains(new Category("61")) || listCategories.contains(new Category("611"))) {
-            return new Category("61").getDescription();
+        if (listCategories.contains(CategoryEnum._61) || listCategories.contains(CategoryEnum._611)) {
+            return CategoryEnum._61.toString();
         } else {
             return "organic";
         }
@@ -302,8 +301,8 @@ public class Document implements Serializable {
 
     public void setNaturalness(String naturalness) {
         this.naturalness = naturalness;
-        if (naturalness.equals(new Category("61").getDescription())) {
-            listCategories.add(new Category("61"));
+        if (naturalness.equals(CategoryEnum._61.toString())) {
+            listCategories.add(CategoryEnum._61);
         }
     }
 

@@ -13,18 +13,71 @@ import java.util.Set;
  */
 public class ConditionalExpression {
 
-    String condition;
+    ConditionEnum conditionEnum;
+
+    public static enum ConditionEnum {
+        isImmediatelyPrecededByANegation,
+        isImmediatelyFollowedByANegation,
+        isImmediatelyPrecededBySpecificTerm,
+        isImmediatelyFollowedBySpecificTerm,
+        isImmediatelyFollowedByAnOpinion,
+        isPrecededBySubjectiveTerm,
+        isFirstTermOfStatus,
+        isFollowedByAPositiveOpinion,
+        isImmediatelyPrecededByPositive,
+        isImmediatelyFollowedByAPositiveOpinion,
+        isImmediatelyFollowedByANegativeOpinion,
+        isPrecededByOpinion,
+        isPrecededByPositive,
+        isPrecededBySpecificTerm,
+        isFollowedBySpecificTerm,
+        isInAStatusWithOneOfTheseSpecificTerms,
+        isHashtagStart,
+        isInHashtag,
+        isHashtag,
+        isQuestionMarkAtEndOfStatus,
+        isAllCaps,
+        isPrecededByStrongWord,
+        isFirstLetterCapitalized,
+        isNegationInCaps
+    }
+
     Set<String> keywords;
     Boolean flipped;
 
-    public String getCondition() {
-        return condition;
+    public ConditionEnum getConditionEnum() {
+        return conditionEnum;
     }
 
-    public void setCondition(String condition, Boolean flipped) {
-        this.condition = condition;
+    public ConditionalExpression() {
+    }
+
+    public ConditionalExpression(String conditionName) {
+        setConditionName(conditionName);
+    }
+
+    public ConditionalExpression(ConditionalExpression.ConditionEnum conditionEnum) {
+        this.conditionEnum = conditionEnum;
+    }
+
+    public void setCondition(String conditionName, Boolean flipped) {
+        setConditionName(conditionName);
         this.flipped = flipped;
-        
+    }
+
+    public void setConditionName(String conditionName) {
+        boolean isValidConditionName = false;
+        for (ConditionalExpression.ConditionEnum c : ConditionalExpression.ConditionEnum.values()) {
+            if (c.name().equals(conditionName)) {
+                isValidConditionName = true;
+                this.conditionEnum = c;
+            }
+        }
+        if (!isValidConditionName) {
+            System.out.println("error in class ConditionalExpression");
+            System.out.println("type of condition name " + conditionName + " is not a valid name");
+        }
+
     }
 
     public Set<String> getKeywords() {
@@ -42,7 +95,5 @@ public class ConditionalExpression {
     public void setFlipped(Boolean flipped) {
         this.flipped = flipped;
     }
-    
-    
 
 }
