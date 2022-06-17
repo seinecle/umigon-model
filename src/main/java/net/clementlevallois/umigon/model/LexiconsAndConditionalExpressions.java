@@ -1,4 +1,4 @@
-package net.clementlevallois.umigon.model.heuristics;
+package net.clementlevallois.umigon.model;
 
 import java.util.ArrayList;
 import java.util.List;

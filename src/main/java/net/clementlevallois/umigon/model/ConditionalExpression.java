@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.clementlevallois.umigon.model.heuristics;
+package net.clementlevallois.umigon.model;
 
 import java.util.Set;
 
@@ -22,7 +22,7 @@ public class ConditionalExpression {
         isImmediatelyFollowedBySpecificTerm,
         isImmediatelyFollowedByAnOpinion,
         isPrecededBySubjectiveTerm,
-        isFirstTermOfStatus,
+        isFirstTermOfText,
         isFollowedByAPositiveOpinion,
         isImmediatelyPrecededByPositive,
         isImmediatelyFollowedByAPositiveOpinion,
@@ -31,11 +31,11 @@ public class ConditionalExpression {
         isPrecededByPositive,
         isPrecededBySpecificTerm,
         isFollowedBySpecificTerm,
-        isInAStatusWithOneOfTheseSpecificTerms,
+        isInATextWithOneOfTheseSpecificTerms,
         isHashtagStart,
         isInHashtag,
         isHashtag,
-        isQuestionMarkAtEndOfStatus,
+        isQuestionMarkAtEndOfText,
         isAllCaps,
         isPrecededByStrongWord,
         isFirstLetterCapitalized,

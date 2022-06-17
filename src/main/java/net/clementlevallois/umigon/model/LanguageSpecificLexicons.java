@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.clementlevallois.umigon.model.heuristics;
+package net.clementlevallois.umigon.model;
 
-import net.clementlevallois.umigon.model.heuristics.LexiconsAndConditionalExpressions;
+import net.clementlevallois.umigon.model.LexiconsAndConditionalExpressions;
 import java.util.Map;
 import java.util.Set;
 

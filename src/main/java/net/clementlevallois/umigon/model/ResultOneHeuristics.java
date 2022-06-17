@@ -3,9 +3,10 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.util.Objects;
 import net.clementlevallois.umigon.model.Category.CategoryEnum;
 import net.clementlevallois.umigon.model.TypeOfToken.TypeOfTokenEnum;
-import net.clementlevallois.umigon.model.heuristics.ConditionalExpression.ConditionEnum;
+import net.clementlevallois.umigon.model.ConditionalExpression.ConditionEnum;
 
 /**
  *
@@ -107,5 +108,33 @@ public class ResultOneHeuristics {
     public void setTypeOfToken(TypeOfTokenEnum typeOfTokenEnum) {
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.indexTokenInvestigated);
+        hash = 89 * hash + Objects.hashCode(this.tokenInvestigated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ResultOneHeuristics other = (ResultOneHeuristics) obj;
+        if (!Objects.equals(this.tokenInvestigated, other.tokenInvestigated)) {
+            return false;
+        }
+        return Objects.equals(this.indexTokenInvestigated, other.indexTokenInvestigated);
+    }
+    
+    
 
 }
