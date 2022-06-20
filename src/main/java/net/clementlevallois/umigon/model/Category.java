@@ -73,14 +73,12 @@ public class Category implements Serializable {
     public void setCategoryEnum(CategoryEnum categoryEnum) {
         this.categoryEnum = categoryEnum;
     }
-    
-    
 
     public void setCategoryEnumFromString(String categoryEnumFromString) {
 
         boolean isValidCategoryName = false;
         for (Category.CategoryEnum c : Category.CategoryEnum.values()) {
-            if (c.name().equals(categoryEnumFromString)) {
+            if (c.name().equals("_" + categoryEnumFromString)) {
                 isValidCategoryName = true;
                 this.categoryEnum = c;
             }

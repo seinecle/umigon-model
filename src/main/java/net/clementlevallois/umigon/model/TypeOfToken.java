@@ -12,7 +12,7 @@ public class TypeOfToken {
     TypeOfTokenEnum typeOfTokenEnum;
 
     public static enum TypeOfTokenEnum {
-        NGRAM, ONOMATOPAE, TEXTO_SPEAK, EMOJI, PUNCTUATION, QUESTION, TOO_SHORT, HASHTAG
+        NGRAM, ONOMATOPAE, TEXTO_SPEAK, ASCII_EMOJI, EMOJI, PUNCTUATION, QUESTION, TOO_SHORT, HASHTAG
     }
 
     public TypeOfTokenEnum getTypeOfTokenEnum() {
@@ -27,18 +27,18 @@ public class TypeOfToken {
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
 
-    public void setTypeOfTokeName(String typeOfTokeName) {
+    public void setTypeOfTokeName(String typeOfTokenName) {
 
         boolean isValidTokenName = false;
         for (TypeOfTokenEnum c : TypeOfTokenEnum.values()) {
-            if (c.name().equals(typeOfTokeName)) {
+            if (c.name().equals(typeOfTokenName)) {
                 isValidTokenName = true;
                 this.typeOfTokenEnum = c;
             }
         }
         if (!isValidTokenName) {
             System.out.println("error in class TypeOfToken");
-            System.out.println("type of token name " + typeOfTokeName + " is not a valid name");
+            System.out.println("type of token name " + typeOfTokenName + " is not a valid name");
         }
     }
 

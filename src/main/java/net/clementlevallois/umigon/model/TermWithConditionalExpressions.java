@@ -7,14 +7,14 @@ import java.util.List;
  *
  * @author C. Levallois
  */
-public class LexiconsAndConditionalExpressions {
+public class TermWithConditionalExpressions {
 
     private String term;
     private List<ConditionalExpression> features;
     private String rule;
     private boolean hashtagRelevant;
 
-    public LexiconsAndConditionalExpressions() {
+    public TermWithConditionalExpressions() {
         hashtagRelevant = true;
         features = new ArrayList();
     }
@@ -60,11 +60,8 @@ public class LexiconsAndConditionalExpressions {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final LexiconsAndConditionalExpressions other = (LexiconsAndConditionalExpressions) obj;
-        if ((this.term == null) ? (other.term != null) : !this.term.equals(other.term)) {
-            return false;
-        }
-        return true;
+        final TermWithConditionalExpressions other = (TermWithConditionalExpressions) obj;
+        return !((this.term == null) ? (other.term != null) : !this.term.equals(other.term));
     }
 
     public boolean isHashtagRelevant() {

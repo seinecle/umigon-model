@@ -16,7 +16,9 @@ public class ConditionalExpression {
     ConditionEnum conditionEnum;
 
     public static enum ConditionEnum {
+        none,
         isImmediatelyPrecededByANegation,
+        isImmediatelyFollowedByTimeIndication,
         isImmediatelyFollowedByANegation,
         isImmediatelyPrecededBySpecificTerm,
         isImmediatelyFollowedBySpecificTerm,
@@ -53,6 +55,10 @@ public class ConditionalExpression {
     }
 
     public ConditionalExpression(String conditionName) {
+        if (conditionName.isBlank()) {
+            this.conditionEnum = ConditionEnum.none;
+            return;
+        }
         setConditionName(conditionName);
     }
 
@@ -61,21 +67,26 @@ public class ConditionalExpression {
     }
 
     public void setCondition(String conditionName, Boolean flipped) {
-        setConditionName(conditionName);
         this.flipped = flipped;
+        if (conditionName.isBlank()) {
+            this.conditionEnum = ConditionEnum.none;
+            return;
+        }
+
+        setConditionName(conditionName);
     }
 
     public void setConditionName(String conditionName) {
         boolean isValidConditionName = false;
         for (ConditionalExpression.ConditionEnum c : ConditionalExpression.ConditionEnum.values()) {
-            if (c.name().equals(conditionName)) {
+            if (c.name().equals(conditionName.trim())) {
                 isValidConditionName = true;
                 this.conditionEnum = c;
             }
         }
         if (!isValidConditionName) {
             System.out.println("error in class ConditionalExpression");
-            System.out.println("type of condition name " + conditionName + " is not a valid name");
+            System.out.println("type of condition name \"" + conditionName + "\" is not a valid condition name");
         }
 
     }
