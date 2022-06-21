@@ -3,10 +3,11 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import net.clementlevallois.umigon.model.Category.CategoryEnum;
 import net.clementlevallois.umigon.model.TypeOfToken.TypeOfTokenEnum;
-import net.clementlevallois.umigon.model.ConditionalExpression.ConditionEnum;
 
 /**
  *
@@ -14,9 +15,7 @@ import net.clementlevallois.umigon.model.ConditionalExpression.ConditionEnum;
  */
 public class ResultOneHeuristics {
 
-    private ConditionEnum conditionEnum;
-    private String keywordMatched;
-    private Boolean tokenInvestigatedGetsMatched;
+    private List<BooleanCondition> booleanConditions = new ArrayList();
     private CategoryEnum categoryEnum;
     private Integer indexTokenInvestigated;
     private String tokenInvestigated;
@@ -25,14 +24,14 @@ public class ResultOneHeuristics {
     /**
      *
      * @param categoryEnum
-     * @param indexTermMatched
-     * @param termMatched
+     * @param indexTokenInvestigated
+     * @param tokenInvestigated
      * @param typeOfTokenEnum
      */
-    public ResultOneHeuristics(Category.CategoryEnum categoryEnum, Integer indexTermMatched, String termMatched, TypeOfToken.TypeOfTokenEnum typeOfTokenEnum) {
+    public ResultOneHeuristics(Category.CategoryEnum categoryEnum, Integer indexTokenInvestigated, String tokenInvestigated, TypeOfToken.TypeOfTokenEnum typeOfTokenEnum) {
         this.categoryEnum = categoryEnum;
-        this.indexTokenInvestigated = indexTermMatched;
-        this.tokenInvestigated = termMatched;
+        this.indexTokenInvestigated = indexTokenInvestigated;
+        this.tokenInvestigated = tokenInvestigated;
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
 
@@ -46,36 +45,19 @@ public class ResultOneHeuristics {
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
 
-    public ResultOneHeuristics(ConditionEnum conditionalExpressionEnum, String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum) {
-        this.conditionEnum = conditionalExpressionEnum;
+    public ResultOneHeuristics(String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum) {
         this.typeOfTokenEnum = typeOfTokenEnum;
         this.tokenInvestigated = tokenInvestigated;
         this.indexTokenInvestigated = indexTokenInvestigated;
     }
 
-    public ConditionEnum getConditionEnum() {
-        return conditionEnum;
+    public ResultOneHeuristics(String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum, CategoryEnum categoryEnum) {
+        this.typeOfTokenEnum = typeOfTokenEnum;
+        this.tokenInvestigated = tokenInvestigated;
+        this.indexTokenInvestigated = indexTokenInvestigated;
+        this.categoryEnum = categoryEnum;
     }
 
-    public void setConditionEnum(ConditionEnum conditionalExpressionEnum) {
-        this.conditionEnum = conditionalExpressionEnum;
-    }
-
-    public String getKeywordMatched() {
-        return keywordMatched;
-    }
-
-    public void setKeywordMatched(String keywordMatched) {
-        this.keywordMatched = keywordMatched;
-    }
-
-    public Boolean getTokenInvestigatedGetsMatched() {
-        return tokenInvestigatedGetsMatched;
-    }
-
-    public void setTokenInvestigatedGetsMatched(Boolean tokenInvestigatedGetsMatched) {
-        this.tokenInvestigatedGetsMatched = tokenInvestigatedGetsMatched;
-    }
 
     public CategoryEnum getCategoryEnum() {
         return categoryEnum;
@@ -108,6 +90,16 @@ public class ResultOneHeuristics {
     public void setTypeOfToken(TypeOfTokenEnum typeOfTokenEnum) {
         this.typeOfTokenEnum = typeOfTokenEnum;
     }
+
+    public List<BooleanCondition> getBooleanConditions() {
+        return booleanConditions;
+    }
+
+    public void setBooleanConditions(List<BooleanCondition> booleanConditions) {
+        this.booleanConditions = booleanConditions;
+    }
+    
+    
 
     @Override
     public int hashCode() {

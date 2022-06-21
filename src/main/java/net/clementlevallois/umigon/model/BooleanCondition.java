@@ -5,17 +5,20 @@
  */
 package net.clementlevallois.umigon.model;
 
-import java.util.Set;
-
 /**
  *
  * @author LEVALLOIS
  */
-public class ConditionalExpression {
+public class BooleanCondition {
 
-    ConditionEnum conditionEnum;
+    BooleanConditionEnum booleanConditionEnum;
+    private String keywordMatched;
+    private Integer keywordMatchedIndex;
+    private Boolean tokenInvestigatedGetsMatched = Boolean.FALSE;
+//    Set<String> keywords;
+    Boolean flipped;
 
-    public static enum ConditionEnum {
+    public static enum BooleanConditionEnum {
         none,
         isImmediatelyPrecededByANegation,
         isImmediatelyFollowedByTimeIndication,
@@ -24,9 +27,11 @@ public class ConditionalExpression {
         isImmediatelyFollowedBySpecificTerm,
         isImmediatelyFollowedByAnOpinion,
         isPrecededBySubjectiveTerm,
+        isFollowedByVerbPastTense,
         isFirstTermOfText,
         isFollowedByAPositiveOpinion,
         isImmediatelyPrecededByPositive,
+        isImmediatelyPrecededByNegative,
         isImmediatelyFollowedByAPositiveOpinion,
         isImmediatelyFollowedByANegativeOpinion,
         isPrecededByOpinion,
@@ -36,7 +41,8 @@ public class ConditionalExpression {
         isInATextWithOneOfTheseSpecificTerms,
         isHashtagStart,
         isInHashtag,
-        isHashtag,
+        isHashtagPositiveSentiment,
+        isHashtagNegativeSentiment,
         isQuestionMarkAtEndOfText,
         isAllCaps,
         isPrecededByStrongWord,
@@ -44,32 +50,30 @@ public class ConditionalExpression {
         isNegationInCaps
     }
 
-    Set<String> keywords;
-    Boolean flipped;
 
-    public ConditionEnum getConditionEnum() {
-        return conditionEnum;
+    public BooleanConditionEnum getBooleanConditionEnum() {
+        return booleanConditionEnum;
     }
 
-    public ConditionalExpression() {
+    public BooleanCondition() {
     }
 
-    public ConditionalExpression(String conditionName) {
+    public BooleanCondition(String conditionName) {
         if (conditionName.isBlank()) {
-            this.conditionEnum = ConditionEnum.none;
+            this.booleanConditionEnum = BooleanConditionEnum.none;
             return;
         }
         setConditionName(conditionName);
     }
 
-    public ConditionalExpression(ConditionalExpression.ConditionEnum conditionEnum) {
-        this.conditionEnum = conditionEnum;
+    public BooleanCondition(BooleanCondition.BooleanConditionEnum booleanConditionEnum) {
+        this.booleanConditionEnum = booleanConditionEnum;
     }
 
     public void setCondition(String conditionName, Boolean flipped) {
         this.flipped = flipped;
         if (conditionName.isBlank()) {
-            this.conditionEnum = ConditionEnum.none;
+            this.booleanConditionEnum = BooleanConditionEnum.none;
             return;
         }
 
@@ -78,10 +82,10 @@ public class ConditionalExpression {
 
     public void setConditionName(String conditionName) {
         boolean isValidConditionName = false;
-        for (ConditionalExpression.ConditionEnum c : ConditionalExpression.ConditionEnum.values()) {
+        for (BooleanCondition.BooleanConditionEnum c : BooleanCondition.BooleanConditionEnum.values()) {
             if (c.name().equals(conditionName.trim())) {
                 isValidConditionName = true;
-                this.conditionEnum = c;
+                this.booleanConditionEnum = c;
             }
         }
         if (!isValidConditionName) {
@@ -91,14 +95,14 @@ public class ConditionalExpression {
 
     }
 
-    public Set<String> getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(Set<String> keywords) {
-        this.keywords = keywords;
-    }
-
+//    public Set<String> getKeywords() {
+//        return keywords;
+//    }
+//
+//    public void setKeywords(Set<String> keywords) {
+//        this.keywords = keywords;
+//    }
+//
     public Boolean getFlipped() {
         return flipped;
     }
@@ -106,5 +110,31 @@ public class ConditionalExpression {
     public void setFlipped(Boolean flipped) {
         this.flipped = flipped;
     }
+
+    public String getKeywordMatched() {
+        return keywordMatched;
+    }
+
+    public void setKeywordMatched(String keywordMatched) {
+        this.keywordMatched = keywordMatched;
+    }
+
+    public Boolean getTokenInvestigatedGetsMatched() {
+        return tokenInvestigatedGetsMatched;
+    }
+
+    public void setTokenInvestigatedGetsMatched(Boolean tokenInvestigatedGetsMatched) {
+        this.tokenInvestigatedGetsMatched = tokenInvestigatedGetsMatched;
+    }
+
+    public Integer getKeywordMatchedIndex() {
+        return keywordMatchedIndex;
+    }
+
+    public void setKeywordMatchedIndex(Integer keywordMatchedIndex) {
+        this.keywordMatchedIndex = keywordMatchedIndex;
+    }
+    
+    
 
 }

@@ -10,13 +10,13 @@ import java.util.List;
 public class TermWithConditionalExpressions {
 
     private String term;
-    private List<ConditionalExpression> features;
+    private List<BooleanCondition> booleanConditions;
     private String rule;
     private boolean hashtagRelevant;
 
     public TermWithConditionalExpressions() {
         hashtagRelevant = true;
-        features = new ArrayList();
+        booleanConditions = new ArrayList();
     }
 
     public void generateNewHeuristic(String term, String rule) {
@@ -28,12 +28,12 @@ public class TermWithConditionalExpressions {
         return term;
     }
 
-    public void addFeature(ConditionalExpression feature) {
-        features.add(feature);
+    public void addFeature(BooleanCondition booleanCondition) {
+        booleanConditions.add(booleanCondition);
     }
 
-    public List<ConditionalExpression> getMapFeatures() {
-        return features;
+    public List<BooleanCondition> getMapFeatures() {
+        return booleanConditions;
     }
 
     public String getRule() {

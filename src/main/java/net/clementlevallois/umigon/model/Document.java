@@ -85,9 +85,6 @@ public class Document implements Serializable {
     public Map<Integer, ResultOneHeuristics> getAllHeuristicsResultsForOneCategory(CategoryEnum catEnum) {
         Map<Integer, ResultOneHeuristics> mapIndices = new HashMap();
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
-            if (!resultOneHeuristics.getTokenInvestigatedGetsMatched()) {
-                continue;
-            }
             CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
             if (categoryEnum.equals(catEnum)) {
                 mapIndices.put(resultOneHeuristics.getIndexTokenInvestigated(), resultOneHeuristics);
