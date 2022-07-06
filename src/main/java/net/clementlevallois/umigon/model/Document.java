@@ -24,7 +24,7 @@ public class Document implements Serializable {
     private String textStripped;
     private String language;
     private List<String> hashtags;
-    private Queue<ResultOneHeuristics> resultsHeuristics;
+    private List<ResultOneHeuristics> resultsHeuristics;
     private List<Decision> sentimentDecisions = new ArrayList();
     private boolean isNegative;
     private boolean isPositive;
@@ -35,14 +35,14 @@ public class Document implements Serializable {
     private String explanationSentiment;
 
     public Document() {
-        resultsHeuristics = new ConcurrentLinkedQueue();
+        resultsHeuristics = new ArrayList();
         hashtags = new ArrayList();
     }
 
     public Document(String text) {
         this.text = text;
         hashtags = new ArrayList();
-        resultsHeuristics = new ConcurrentLinkedQueue();
+        resultsHeuristics = new ArrayList();
         hashtags = new ArrayList();
     }
 
@@ -78,7 +78,7 @@ public class Document implements Serializable {
         this.hashtags = hashtags;
     }
 
-    public Queue<ResultOneHeuristics> getResultsOfHeuristics() {
+    public List<ResultOneHeuristics> getResultsOfHeuristics() {
         return resultsHeuristics;
     }
 

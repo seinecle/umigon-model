@@ -3,58 +3,34 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LEVALLOIS
  */
-public class Term {
-    
-    String originalForm;
-    String strippedForm;
-    
-    int indexOriginalForm;
-    String indexOriginalFormAsString;
+public class Term extends TextFragment implements Serializable {
 
-    public String getOriginalForm() {
-        return originalForm;
+    private String cleanedForm;
+    private String cleanedAndStrippedForm;
+
+    public String getCleanedForm() {
+        return cleanedForm;
     }
 
-    public void setOriginalForm(String originalForm) {
-        this.originalForm = originalForm;
+    public void setCleanedForm(String cleanedForm) {
+        this.cleanedForm = cleanedForm;
     }
 
-    public String getOriginalFormLowercase() {
-        return originalForm.toLowerCase();
+    public String getCleanedAndStrippedForm() {
+        return cleanedAndStrippedForm;
     }
 
-    public String getStrippedForm() {
-        return strippedForm;
+    public void setCleanedAndStrippedForm(String cleanedAndStrippedForm) {
+        this.cleanedAndStrippedForm = cleanedAndStrippedForm;
     }
 
-    public void setStrippedForm(String strippedForm) {
-        this.strippedForm = strippedForm;
+    public String getCleanedAndStrippedIfCondition(boolean stripped) {
+        return stripped ? cleanedAndStrippedForm : cleanedForm;
     }
-
-    public String getStrippedFormLowercase() {
-        return strippedForm.toLowerCase();
-    }
-
-    public int getIndexOriginalForm() {
-        return indexOriginalForm;
-    }
-
-    public void setIndexOriginalForm(int indexOriginalForm) {
-        this.indexOriginalForm = indexOriginalForm;
-        this.indexOriginalFormAsString = String.valueOf(indexOriginalForm);
-    }
-    
-    public String getOrigTermAndIndex(){
-        return originalForm+"_"+indexOriginalFormAsString;
-    }
-    
-    
-    
-    
-    
-    
 }

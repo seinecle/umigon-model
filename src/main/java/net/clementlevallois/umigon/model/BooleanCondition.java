@@ -5,20 +5,23 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author LEVALLOIS
  */
-public class BooleanCondition {
+public class BooleanCondition implements Serializable {
 
     BooleanConditionEnum booleanConditionEnum;
-    private String keywordMatched;
-    private Integer keywordMatchedIndex;
+    private TextFragment textFragmentMatched;
     private Boolean tokenInvestigatedGetsMatched = Boolean.FALSE;
-//    Set<String> keywords;
-    Boolean flipped;
+    Set<TextFragment> textFragmentsAssociatedTotheBooleanCondition = new HashSet();
+    Boolean flipped = Boolean.FALSE;
 
-    public static enum BooleanConditionEnum {
+    public static enum BooleanConditionEnum implements Serializable {
         none,
         isImmediatelyPrecededByANegation,
         isImmediatelyFollowedByTimeIndication,
@@ -40,6 +43,7 @@ public class BooleanCondition {
         isFollowedBySpecificTerm,
         isInATextWithOneOfTheseSpecificTerms,
         isHashtagStart,
+        isHashtag,
         isInHashtag,
         isHashtagPositiveSentiment,
         isHashtagNegativeSentiment,
@@ -49,7 +53,6 @@ public class BooleanCondition {
         isFirstLetterCapitalized,
         isNegationInCaps
     }
-
 
     public BooleanConditionEnum getBooleanConditionEnum() {
         return booleanConditionEnum;
@@ -94,15 +97,6 @@ public class BooleanCondition {
         }
 
     }
-
-//    public Set<String> getKeywords() {
-//        return keywords;
-//    }
-//
-//    public void setKeywords(Set<String> keywords) {
-//        this.keywords = keywords;
-//    }
-//
     public Boolean getFlipped() {
         return flipped;
     }
@@ -111,12 +105,28 @@ public class BooleanCondition {
         this.flipped = flipped;
     }
 
-    public String getKeywordMatched() {
-        return keywordMatched;
+    public Set<TextFragment> getTextFragmentsAssociatedTotheBooleanCondition() {
+        return textFragmentsAssociatedTotheBooleanCondition;
     }
 
-    public void setKeywordMatched(String keywordMatched) {
-        this.keywordMatched = keywordMatched;
+    public Set<String> getTextFragmentsAssociatedTotheBooleanConditionAsString(boolean stripped) {
+        Set<String> set = new HashSet();
+        for (TextFragment tf: textFragmentsAssociatedTotheBooleanCondition){
+            set.add(tf.getString())
+        }
+        return ;
+    }
+
+    public void setTextFragmentsAssociatedTotheBooleanCondition(Set<TextFragment> textFragmentsAssociatedTotheBooleanCondition) {
+        this.textFragmentsAssociatedTotheBooleanCondition = textFragmentsAssociatedTotheBooleanCondition;
+    }
+
+    public TextFragment getTextFragmentMatched() {
+        return textFragmentMatched;
+    }
+
+    public void setTextFragmentMatched(TextFragment textFragmentMatched) {
+        this.textFragmentMatched = textFragmentMatched;
     }
 
     public Boolean getTokenInvestigatedGetsMatched() {
@@ -126,15 +136,5 @@ public class BooleanCondition {
     public void setTokenInvestigatedGetsMatched(Boolean tokenInvestigatedGetsMatched) {
         this.tokenInvestigatedGetsMatched = tokenInvestigatedGetsMatched;
     }
-
-    public Integer getKeywordMatchedIndex() {
-        return keywordMatchedIndex;
-    }
-
-    public void setKeywordMatchedIndex(Integer keywordMatchedIndex) {
-        this.keywordMatchedIndex = keywordMatchedIndex;
-    }
-    
-    
 
 }

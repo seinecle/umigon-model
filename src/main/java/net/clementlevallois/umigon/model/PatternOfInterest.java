@@ -6,7 +6,7 @@ package net.clementlevallois.umigon.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import net.clementlevallois.umigon.model.TypeOfToken.TypeOfTokenEnum;
+import net.clementlevallois.umigon.model.TypeOfTextFragment.TypeOfTextFragmentEnum;
 
 /**
  *
@@ -18,8 +18,9 @@ public class PatternOfInterest {
     private String regex;
     private boolean shouldApplyToLowerCaseText;
     private List<Category> categories = new ArrayList();
-    private TypeOfTokenEnum typeOfTokenEnum;
+    private TypeOfTextFragmentEnum typeOfTextFragmentEnum;
     private Pattern pattern;
+    private Boolean matched;
 
     public String getDescription() {
         return description;
@@ -54,12 +55,12 @@ public class PatternOfInterest {
         this.categories = categories;
     }
 
-    public TypeOfTokenEnum getTypeOfToken() {
-        return typeOfTokenEnum;
+    public TypeOfTextFragmentEnum getTypeOfTextFragment() {
+        return typeOfTextFragmentEnum;
     }
 
-    public void setTypeOfToken(String typeOfTokenName) {
-        this.typeOfTokenEnum = new TypeOfToken(typeOfTokenName).getTypeOfTokenEnum();
+    public void setTypeOfTextFragment(String typeOfTokenName) {
+        this.typeOfTextFragmentEnum = new TypeOfTextFragment(typeOfTokenName).getTypeOfTextFragmentEnum();
     }
 
     public Pattern getPattern() {
@@ -69,6 +70,12 @@ public class PatternOfInterest {
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
     }
-    
-    
+
+    public Boolean getMatched() {
+        return matched;
+    }
+
+    public void setMatched(Boolean matched) {
+        this.matched = matched;
+    }
 }

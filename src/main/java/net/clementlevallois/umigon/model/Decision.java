@@ -3,6 +3,7 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,24 +11,23 @@ import java.util.List;
  *
  * @author LEVALLOIS
  */
-public class Decision {
-    
+public class Decision implements Serializable {
+
     private ResultOneHeuristics heuristicsImpacted;
     private List<ResultOneHeuristics> listOfHeuristicsImpacted = new ArrayList();
     private ResultOneHeuristics secondHeuristicsImpacted;
     private ResultOneHeuristics otherHeuristicsInvolvedInDecision;
     private String termInvolvedInDecision;
     private int indexOfTermInvolvedInDecision;
-    
-   private DecisionType decisionType;
-   private DecisionMotive decisionMotive;
-    
-    
-    public static enum DecisionType{
+
+    private DecisionType decisionType;
+    private DecisionMotive decisionMotive;
+
+    public static enum DecisionType implements Serializable {
         REMOVE
     }
-    
-    public static enum DecisionMotive{
+
+    public static enum DecisionMotive implements Serializable {
         POSITIVE_TERM_THEN_NEGATION_THEN_NEGATIVE_TERM,
         NEGATIVE_TERM_THEN_NEGATION_THEN_POSITIVE_TERM,
         NEGATION_THEN_NEGATIVE_TERM_THEN_POSITIVE_TERM,
@@ -59,6 +59,9 @@ public class Decision {
     }
 
     public String getTermInvolvedInDecision() {
+        if (termInvolvedInDecision == null) {
+            return "";
+        }
         return termInvolvedInDecision;
     }
 
@@ -99,16 +102,17 @@ public class Decision {
     }
 
     public List<ResultOneHeuristics> getListOfHeuristicsImpacted() {
+        if (heuristicsImpacted != null) {
+            listOfHeuristicsImpacted.add(heuristicsImpacted);
+        }
+        if (secondHeuristicsImpacted != null) {
+            listOfHeuristicsImpacted.add(secondHeuristicsImpacted);
+        }
         return listOfHeuristicsImpacted;
     }
 
     public void setListOfHeuristicsImpacted(List<ResultOneHeuristics> listOfHeuristicsImpacted) {
         this.listOfHeuristicsImpacted = listOfHeuristicsImpacted;
     }
-    
-    
-    
-    
-    
-    
+
 }

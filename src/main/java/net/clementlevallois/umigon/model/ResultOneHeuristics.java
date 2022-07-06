@@ -3,61 +3,36 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import net.clementlevallois.umigon.model.Category.CategoryEnum;
-import net.clementlevallois.umigon.model.TypeOfToken.TypeOfTokenEnum;
 
 /**
  *
  * @author LEVALLOIS
  */
-public class ResultOneHeuristics {
+public class ResultOneHeuristics implements Serializable{
 
     private List<BooleanCondition> booleanConditions = new ArrayList();
     private CategoryEnum categoryEnum;
-    private Integer indexTokenInvestigated;
-    private String tokenInvestigated;
-    private TypeOfToken.TypeOfTokenEnum typeOfTokenEnum;
+    private TextFragment textFragmentInvestigated;
 
     /**
      *
      * @param categoryEnum
-     * @param indexTokenInvestigated
-     * @param tokenInvestigated
-     * @param typeOfTokenEnum
+     * @param textFragmentInvestigated
      */
-    public ResultOneHeuristics(Category.CategoryEnum categoryEnum, Integer indexTokenInvestigated, String tokenInvestigated, TypeOfToken.TypeOfTokenEnum typeOfTokenEnum) {
+    public ResultOneHeuristics(Category.CategoryEnum categoryEnum, TextFragment textFragmentInvestigated) {
         this.categoryEnum = categoryEnum;
-        this.indexTokenInvestigated = indexTokenInvestigated;
-        this.tokenInvestigated = tokenInvestigated;
-        this.typeOfTokenEnum = typeOfTokenEnum;
+        this.textFragmentInvestigated = textFragmentInvestigated;
     }
 
-    /**
-     *
-     * @param categoryEnum
-     * @param typeOfTokenEnum
-     */
-    public ResultOneHeuristics(CategoryEnum categoryEnum, TypeOfTokenEnum typeOfTokenEnum) {
-        this.categoryEnum = categoryEnum;
-        this.typeOfTokenEnum = typeOfTokenEnum;
-    }
 
-    public ResultOneHeuristics(String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum) {
-        this.typeOfTokenEnum = typeOfTokenEnum;
-        this.tokenInvestigated = tokenInvestigated;
-        this.indexTokenInvestigated = indexTokenInvestigated;
+    public ResultOneHeuristics(TextFragment textFragmentInvestigated) {
+        this.textFragmentInvestigated = textFragmentInvestigated;
     }
-
-    public ResultOneHeuristics(String tokenInvestigated, int indexTokenInvestigated, TypeOfTokenEnum typeOfTokenEnum, CategoryEnum categoryEnum) {
-        this.typeOfTokenEnum = typeOfTokenEnum;
-        this.tokenInvestigated = tokenInvestigated;
-        this.indexTokenInvestigated = indexTokenInvestigated;
-        this.categoryEnum = categoryEnum;
-    }
-
 
     public CategoryEnum getCategoryEnum() {
         return categoryEnum;
@@ -67,28 +42,12 @@ public class ResultOneHeuristics {
         this.categoryEnum = categoryEnum;
     }
 
-    public Integer getIndexTokenInvestigated() {
-        return indexTokenInvestigated;
+    public TextFragment getTextFragmentInvestigated() {
+        return textFragmentInvestigated;
     }
 
-    public void setIndexTermMatched(int indexTermMatched) {
-        this.indexTokenInvestigated = indexTermMatched;
-    }
-
-    public String getTokenInvestigated() {
-        return tokenInvestigated;
-    }
-
-    public void setTokenInvestigated(String tokenInvestigated) {
-        this.tokenInvestigated = tokenInvestigated;
-    }
-
-    public TypeOfTokenEnum getTypeOfToken() {
-        return typeOfTokenEnum;
-    }
-
-    public void setTypeOfToken(TypeOfTokenEnum typeOfTokenEnum) {
-        this.typeOfTokenEnum = typeOfTokenEnum;
+    public void setTextFragmentInvestigated(TextFragment textFragmentInvestigated) {
+        this.textFragmentInvestigated = textFragmentInvestigated;
     }
 
     public List<BooleanCondition> getBooleanConditions() {
@@ -98,14 +57,12 @@ public class ResultOneHeuristics {
     public void setBooleanConditions(List<BooleanCondition> booleanConditions) {
         this.booleanConditions = booleanConditions;
     }
-    
-    
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.indexTokenInvestigated);
-        hash = 89 * hash + Objects.hashCode(this.tokenInvestigated);
+        hash = 97 * hash + Objects.hashCode(this.categoryEnum);
+        hash = 97 * hash + Objects.hashCode(this.textFragmentInvestigated);
         return hash;
     }
 
@@ -121,12 +78,12 @@ public class ResultOneHeuristics {
             return false;
         }
         final ResultOneHeuristics other = (ResultOneHeuristics) obj;
-        if (!Objects.equals(this.tokenInvestigated, other.tokenInvestigated)) {
+        if (this.categoryEnum != other.categoryEnum) {
             return false;
         }
-        return Objects.equals(this.indexTokenInvestigated, other.indexTokenInvestigated);
+        return Objects.equals(this.textFragmentInvestigated, other.textFragmentInvestigated);
     }
     
     
-
+    
 }

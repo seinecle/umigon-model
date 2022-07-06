@@ -1,5 +1,6 @@
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  *
  * @author C. Levallois
  */
-public class TermWithConditionalExpressions {
+public class TermWithConditionalExpressions implements Serializable {
 
     private String term;
     private List<BooleanCondition> booleanConditions;

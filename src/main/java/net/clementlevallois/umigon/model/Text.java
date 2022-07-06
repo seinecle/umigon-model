@@ -3,12 +3,14 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LEVALLOIS
  */
-public class Text {
-    
+public class Text implements Serializable {
+
     String originalForm;
     String originalFormLowercase;
     String cleanedForm;

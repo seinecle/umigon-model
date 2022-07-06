@@ -4,7 +4,6 @@
 package net.clementlevallois.umigon.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -86,6 +85,7 @@ public class Category implements Serializable {
         if (!isValidCategoryName) {
             System.out.println("error in class Category");
             System.out.println("category name " + categoryEnumFromString + " is not a valid name");
+            this.categoryEnum = CategoryEnum._10;
         }
 
     }

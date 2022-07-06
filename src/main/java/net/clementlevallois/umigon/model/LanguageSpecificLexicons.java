@@ -5,7 +5,6 @@
  */
 package net.clementlevallois.umigon.model;
 
-import net.clementlevallois.umigon.model.TermWithConditionalExpressions;
 import java.util.Map;
 import java.util.Set;
 
