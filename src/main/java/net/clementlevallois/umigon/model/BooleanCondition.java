@@ -6,6 +6,7 @@
 package net.clementlevallois.umigon.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,11 +16,13 @@ import java.util.Set;
  */
 public class BooleanCondition implements Serializable {
 
-    BooleanConditionEnum booleanConditionEnum;
+    private BooleanConditionEnum booleanConditionEnum;
     private TextFragment textFragmentMatched;
     private Boolean tokenInvestigatedGetsMatched = Boolean.FALSE;
-    Set<TextFragment> textFragmentsAssociatedTotheBooleanCondition = new HashSet();
-    Boolean flipped = Boolean.FALSE;
+    private Set<String> associatedKeywords = new HashSet();
+    private Set<String> associatedKeywordsStripped = new HashSet();
+    private Set<NGram> associatedKeywordMatchedAsNGrams = new HashSet();
+    private Boolean flipped = Boolean.FALSE;
 
     public static enum BooleanConditionEnum implements Serializable {
         none,
@@ -97,6 +100,7 @@ public class BooleanCondition implements Serializable {
         }
 
     }
+
     public Boolean getFlipped() {
         return flipped;
     }
@@ -105,20 +109,24 @@ public class BooleanCondition implements Serializable {
         this.flipped = flipped;
     }
 
-    public Set<TextFragment> getTextFragmentsAssociatedTotheBooleanCondition() {
-        return textFragmentsAssociatedTotheBooleanCondition;
+    public Set<String> setAssociatedKeywords() {
+        return associatedKeywords;
     }
 
-    public Set<String> getTextFragmentsAssociatedTotheBooleanConditionAsString(boolean stripped) {
-        Set<String> set = new HashSet();
-        for (TextFragment tf: textFragmentsAssociatedTotheBooleanCondition){
-            set.add(tf.getString())
+    public Set<String> getAssociatedKeywords(boolean stripped) {
+        if (!stripped) {
+            return associatedKeywords;
+        } else {
+            return associatedKeywordsStripped;
         }
-        return ;
     }
 
-    public void setTextFragmentsAssociatedTotheBooleanCondition(Set<TextFragment> textFragmentsAssociatedTotheBooleanCondition) {
-        this.textFragmentsAssociatedTotheBooleanCondition = textFragmentsAssociatedTotheBooleanCondition;
+    public void setAssociatedKeywords(Set<String> associatedKeywords) {
+        this.associatedKeywords = associatedKeywords;
+    }
+
+    public void setAssociatedKeywordsStripped(Set<String> associatedKeywordsStripped) {
+        this.associatedKeywordsStripped = associatedKeywordsStripped;
     }
 
     public TextFragment getTextFragmentMatched() {
@@ -135,6 +143,14 @@ public class BooleanCondition implements Serializable {
 
     public void setTokenInvestigatedGetsMatched(Boolean tokenInvestigatedGetsMatched) {
         this.tokenInvestigatedGetsMatched = tokenInvestigatedGetsMatched;
+    }
+
+    public Set<NGram> getAssociatedKeywordMatchedAsNGrams() {
+        return associatedKeywordMatchedAsNGrams;
+    }
+
+    public void setAssociatedKeywordMatchedAsTextFragment(Collection<NGram> associatedKeywordMatchedAsTextFragment) {
+        this.associatedKeywordMatchedAsNGrams.addAll(associatedKeywordMatchedAsTextFragment);
     }
 
 }

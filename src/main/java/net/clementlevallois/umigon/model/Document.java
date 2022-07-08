@@ -8,10 +8,10 @@ package net.clementlevallois.umigon.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.Set;
 import net.clementlevallois.umigon.model.Category.CategoryEnum;
 
 /**
@@ -82,15 +82,15 @@ public class Document implements Serializable {
         return resultsHeuristics;
     }
 
-    public Map<Integer, ResultOneHeuristics> getAllHeuristicsResultsForOneCategory(CategoryEnum catEnum) {
-        Map<Integer, ResultOneHeuristics> mapIndices = new HashMap();
+    public Set<ResultOneHeuristics> getAllHeuristicsResultsForOneCategory(CategoryEnum catEnum) {
+        Set<ResultOneHeuristics> resultsOneHeuristics = new HashSet();
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
             CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
             if (categoryEnum.equals(catEnum)) {
-                mapIndices.put(resultOneHeuristics.getIndexTokenInvestigated(), resultOneHeuristics);
+                    resultsOneHeuristics.add(resultOneHeuristics);
             }
         }
-        return mapIndices;
+        return resultsOneHeuristics;
     }
 
     public String getId() {

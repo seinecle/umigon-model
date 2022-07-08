@@ -14,6 +14,8 @@ public abstract class TextFragment {
     private String string = "";
     private int indexCardinal;
     private int indexOrdinal;
+    private int indexCardinalInSentence;
+    private int indexOrdinalInSentence;
     private int length;
     private TypeOfTextFragmentEnum typeOfTextFragment;
 
@@ -64,5 +66,23 @@ public abstract class TextFragment {
     public void setTypeOfTextFragment(TypeOfTextFragmentEnum typeOfTextFragment) {
         this.typeOfTextFragment = typeOfTextFragment;
     }
+
+    public int getIndexCardinalInSentence() {
+        return indexCardinalInSentence;
+    }
+
+    public void setIndexCardinalInSentence(int indexCardinalInSentence) {
+        this.indexCardinalInSentence = indexCardinalInSentence;
+    }
+
+    public int getIndexOrdinalInSentence() {
+        return indexOrdinalInSentence;
+    }
+
+    public void setIndexOrdinalInSentence(int indexOrdinalInSentence) {
+        this.indexOrdinalInSentence = indexOrdinalInSentence;
+    }
+    
+    
 
 }

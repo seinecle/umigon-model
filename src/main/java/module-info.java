@@ -5,5 +5,6 @@
  */
 
 module net.clementlevallois.umigon.model {
+    requires net.clementlevallois.utils;
     exports net.clementlevallois.umigon.model;
 }
