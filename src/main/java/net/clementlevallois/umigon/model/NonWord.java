@@ -9,7 +9,7 @@ package net.clementlevallois.umigon.model;
  */
 public class NonWord extends TextFragment{
     private PatternOfInterest poi;
-
+    
     public PatternOfInterest getPoi() {
         return poi;
     }

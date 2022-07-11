@@ -7,10 +7,8 @@ package net.clementlevallois.umigon.model;
 //import Utils.Pair;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import net.clementlevallois.umigon.model.Category.CategoryEnum;
 
@@ -23,8 +21,9 @@ public class Document implements Serializable {
     private String text;
     private String textStripped;
     private String language;
-    private List<String> hashtags;
-    private List<ResultOneHeuristics> resultsHeuristics;
+    private List<TextFragment> allTextFragments = new ArrayList();
+    private List<NGram> ngrams = new ArrayList();
+    private List<ResultOneHeuristics> resultsHeuristics = new ArrayList();
     private List<Decision> sentimentDecisions = new ArrayList();
     private boolean isNegative;
     private boolean isPositive;
@@ -35,15 +34,10 @@ public class Document implements Serializable {
     private String explanationSentiment;
 
     public Document() {
-        resultsHeuristics = new ArrayList();
-        hashtags = new ArrayList();
     }
 
     public Document(String text) {
         this.text = text;
-        hashtags = new ArrayList();
-        resultsHeuristics = new ArrayList();
-        hashtags = new ArrayList();
     }
 
     public String getText() {
@@ -70,12 +64,20 @@ public class Document implements Serializable {
         this.language = language;
     }
 
-    public List<String> getHashtags() {
-        return hashtags;
+    public List<TextFragment> getAllTextFragments() {
+        return allTextFragments;
     }
 
-    public void setHashtags(List<String> hashtags) {
-        this.hashtags = hashtags;
+    public void setAllTextFragments(List<TextFragment> allTextFragments) {
+        this.allTextFragments = allTextFragments;
+    }
+
+    public List<NGram> getNgrams() {
+        return ngrams;
+    }
+
+    public void setNgrams(List<NGram> ngrams) {
+        this.ngrams = ngrams;
     }
 
     public List<ResultOneHeuristics> getResultsOfHeuristics() {
@@ -87,7 +89,7 @@ public class Document implements Serializable {
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
             CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
             if (categoryEnum.equals(catEnum)) {
-                    resultsOneHeuristics.add(resultOneHeuristics);
+                resultsOneHeuristics.add(resultOneHeuristics);
             }
         }
         return resultsOneHeuristics;

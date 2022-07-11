@@ -23,6 +23,11 @@ public class NGram extends TextFragment implements Serializable {
         this.terms = terms;
     }
     
+    @Override
+    public String getString(){
+        return getCleanedNgram();
+    }
+    
     
     public String getCleanedAndStrippedNgram(){
         StringBuilder sb = new StringBuilder();

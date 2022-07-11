@@ -149,8 +149,8 @@ public class BooleanCondition implements Serializable {
         return associatedKeywordMatchedAsNGrams;
     }
 
-    public void setAssociatedKeywordMatchedAsTextFragment(Collection<NGram> associatedKeywordMatchedAsTextFragment) {
-        this.associatedKeywordMatchedAsNGrams.addAll(associatedKeywordMatchedAsTextFragment);
+    public void setAssociatedKeywordMatchedAsTextFragment(Collection<NGram> associatedKeywordMatchedAsNGrams) {
+        this.associatedKeywordMatchedAsNGrams.addAll(associatedKeywordMatchedAsNGrams);
     }
 
 }

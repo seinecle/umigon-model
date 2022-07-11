@@ -17,8 +17,7 @@ public class Decision implements Serializable {
     private List<ResultOneHeuristics> listOfHeuristicsImpacted = new ArrayList();
     private ResultOneHeuristics secondHeuristicsImpacted;
     private ResultOneHeuristics otherHeuristicsInvolvedInDecision;
-    private String termInvolvedInDecision;
-    private int indexOfTermInvolvedInDecision;
+    private TextFragment textFragmentInvolvedInDecision;
 
     private DecisionType decisionType;
     private DecisionMotive decisionMotive;
@@ -58,23 +57,12 @@ public class Decision implements Serializable {
         this.otherHeuristicsInvolvedInDecision = otherHeuristicsInvolvedInDecision;
     }
 
-    public String getTermInvolvedInDecision() {
-        if (termInvolvedInDecision == null) {
-            return "";
-        }
-        return termInvolvedInDecision;
+    public TextFragment getTextFragmentInvolvedInDecision() {
+        return textFragmentInvolvedInDecision;
     }
 
-    public void setTermInvolvedInDecision(String termInvolvedInDecision) {
-        this.termInvolvedInDecision = termInvolvedInDecision;
-    }
-
-    public int getIndexOfTermInvolvedInDecision() {
-        return indexOfTermInvolvedInDecision;
-    }
-
-    public void setIndexOfTermInvolvedInDecision(int indexOfTermInvolvedInDecision) {
-        this.indexOfTermInvolvedInDecision = indexOfTermInvolvedInDecision;
+    public void setTextFragmentInvolvedInDecision(TextFragment textFragmentInvolvedInDecision) {
+        this.textFragmentInvolvedInDecision = textFragmentInvolvedInDecision;
     }
 
     public DecisionType getDecisionType() {
