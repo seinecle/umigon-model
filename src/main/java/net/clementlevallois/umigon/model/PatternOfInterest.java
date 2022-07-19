@@ -3,6 +3,7 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -12,8 +13,8 @@ import net.clementlevallois.umigon.model.TypeOfTextFragment.TypeOfTextFragmentEn
  *
  * @author LEVALLOIS
  */
-public class PatternOfInterest {
-    
+public class PatternOfInterest implements Serializable {
+
     private String description;
     private String regex;
     private boolean shouldApplyToLowerCaseText;
@@ -46,7 +47,7 @@ public class PatternOfInterest {
     public void setShouldApplyToLowerCaseText(boolean shouldApplyToLowerCaseText) {
         this.shouldApplyToLowerCaseText = shouldApplyToLowerCaseText;
     }
-    
+
     public List<Category> getCategories() {
         return categories;
     }

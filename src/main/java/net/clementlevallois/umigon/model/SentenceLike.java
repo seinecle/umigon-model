@@ -3,6 +3,7 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  *
  * @author LEVALLOIS
  */
-public class SentenceLike {
+public class SentenceLike  implements Serializable{
     
     private List<NGram> ngrams = new ArrayList();
     private int indexOrdinal;

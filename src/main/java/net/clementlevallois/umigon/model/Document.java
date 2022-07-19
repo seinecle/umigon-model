@@ -25,13 +25,10 @@ public class Document implements Serializable {
     private List<NGram> ngrams = new ArrayList();
     private List<ResultOneHeuristics> resultsHeuristics = new ArrayList();
     private List<Decision> sentimentDecisions = new ArrayList();
-    private boolean isNegative;
-    private boolean isPositive;
-    private String sentiment;
-    private String naturalness;
     private String id;
     private boolean flaggedAsFalseLabel;
     private String explanationSentiment;
+    private CategoryEnum categorizationResult;
 
     public Document() {
     }
@@ -125,6 +122,23 @@ public class Document implements Serializable {
 
     public void setSentimentDecisions(List<Decision> sentimentDecisions) {
         this.sentimentDecisions = sentimentDecisions;
+    }
+
+    public CategoryEnum getCategorizationResult() {
+        for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
+            CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
+            // we return the categoryEnum of the first heuristics
+            // as it should be the same for all heuristics
+            // (after the decisions have been made).
+            return categoryEnum;
+        }
+        
+        // return the "neutral" category if no heuristics has been found
+        return CategoryEnum._10;
+    }
+
+    public void setCategorizationResult(CategoryEnum categorizationResult) {
+        this.categorizationResult = categorizationResult;
     }
 
 }

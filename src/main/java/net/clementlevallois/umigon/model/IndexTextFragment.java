@@ -3,11 +3,13 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LEVALLOIS
  */
-public class IndexTextFragment {
+public class IndexTextFragment  implements Serializable{
     
     private int indexOrdinal;
     private int indexCardinal;

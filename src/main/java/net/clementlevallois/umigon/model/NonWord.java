@@ -3,11 +3,13 @@
  */
 package net.clementlevallois.umigon.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LEVALLOIS
  */
-public class NonWord extends TextFragment{
+public class NonWord extends TextFragment implements Serializable{
     private PatternOfInterest poi;
     
     public PatternOfInterest getPoi() {
