@@ -9,9 +9,11 @@ import java.io.Serializable;
  *
  * @author LEVALLOIS
  */
-public class NonWord extends TextFragment implements Serializable{
+public class NonWord extends TextFragment implements Serializable {
+
     private PatternOfInterest poi;
-    
+    private TypeOfTextFragment.TypeOfTextFragmentEnum typeOfTextFragmentEnum;
+
     public PatternOfInterest getPoi() {
         return poi;
     }
@@ -19,4 +21,14 @@ public class NonWord extends TextFragment implements Serializable{
     public void setPoi(PatternOfInterest poi) {
         this.poi = poi;
     }
+
+    @Override
+    public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
+        return typeOfTextFragmentEnum;
+    }
+
+    public void setTypeOfTextFragmentEnum(TypeOfTextFragment.TypeOfTextFragmentEnum typeOfTextFragmentEnum) {
+        this.typeOfTextFragmentEnum = typeOfTextFragmentEnum;
+    }
+
 }

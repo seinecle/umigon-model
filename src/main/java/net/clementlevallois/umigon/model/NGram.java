@@ -28,7 +28,11 @@ public class NGram extends TextFragment implements Serializable {
         return getCleanedNgram();
     }
     
-    
+    @Override
+    public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
+        return TypeOfTextFragment.TypeOfTextFragmentEnum.NGRAM;
+    }
+   
     public String getCleanedAndStrippedNgram(){
         StringBuilder sb = new StringBuilder();
         for (Term term: terms){

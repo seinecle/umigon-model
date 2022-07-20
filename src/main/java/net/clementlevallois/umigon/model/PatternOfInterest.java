@@ -56,7 +56,7 @@ public class PatternOfInterest implements Serializable {
         this.categories = categories;
     }
 
-    public TypeOfTextFragmentEnum getTypeOfTextFragment() {
+    public TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
         return typeOfTextFragmentEnum;
     }
 
@@ -64,6 +64,10 @@ public class PatternOfInterest implements Serializable {
         this.typeOfTextFragmentEnum = new TypeOfTextFragment(typeOfTokenName).getTypeOfTextFragmentEnum();
     }
 
+    public void setTypeOfTextFragmentEnum(TypeOfTextFragmentEnum typeOfTextFragmentEnum) {
+        this.typeOfTextFragmentEnum = typeOfTextFragmentEnum;
+    }    
+    
     public Pattern getPattern() {
         return pattern;
     }

@@ -17,7 +17,7 @@ public abstract class TextFragment {
     private int indexCardinalInSentence;
     private int indexOrdinalInSentence;
     private int length;
-    private TypeOfTextFragmentEnum typeOfTextFragment;
+    private TypeOfTextFragmentEnum typeOfTextFragmentEnum;
 
     public String getString() {
         return string;
@@ -59,12 +59,8 @@ public abstract class TextFragment {
         this.length = length;
     }
 
-    public TypeOfTextFragmentEnum getTypeOfTextFragment() {
-        return typeOfTextFragment;
-    }
-
-    public void setTypeOfTextFragment(TypeOfTextFragmentEnum typeOfTextFragment) {
-        this.typeOfTextFragment = typeOfTextFragment;
+    public TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
+        return typeOfTextFragmentEnum;
     }
 
     public int getIndexCardinalInSentence() {

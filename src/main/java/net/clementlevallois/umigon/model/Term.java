@@ -15,6 +15,12 @@ public class Term extends TextFragment implements Serializable {
     private String cleanedForm;
     private String cleanedAndStrippedForm;
 
+    @Override
+    public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
+        return TypeOfTextFragment.TypeOfTextFragmentEnum.TERM;
+    }
+
+
     public String getCleanedForm() {
         return cleanedForm;
     }
@@ -51,8 +57,6 @@ public class Term extends TextFragment implements Serializable {
         ngram.setIndexCardinal(this.getIndexOrdinalInSentence());
         ngram.setString(this.getString());
         ngram.getTerms().add(this);
-        ngram.setTypeOfTextFragment(TypeOfTextFragment.TypeOfTextFragmentEnum.NGRAM);
-        
         return ngram;
     }
 }
