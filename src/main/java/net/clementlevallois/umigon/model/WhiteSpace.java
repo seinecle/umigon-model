@@ -13,7 +13,6 @@ public class WhiteSpace extends TextFragment implements Serializable {
 
     private boolean sentenceOrLineBreak;
 
-
     @Override
     public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
         return TypeOfTextFragment.TypeOfTextFragmentEnum.WHITE_SPACE;

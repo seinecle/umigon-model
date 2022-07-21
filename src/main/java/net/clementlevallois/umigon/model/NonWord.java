@@ -14,17 +14,18 @@ public class NonWord extends TextFragment implements Serializable {
     private PatternOfInterest poi;
     private TypeOfTextFragment.TypeOfTextFragmentEnum typeOfTextFragmentEnum;
 
+
+    @Override
+    public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
+        return typeOfTextFragmentEnum;
+    }
+
     public PatternOfInterest getPoi() {
         return poi;
     }
 
     public void setPoi(PatternOfInterest poi) {
         this.poi = poi;
-    }
-
-    @Override
-    public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
-        return typeOfTextFragmentEnum;
     }
 
     public void setTypeOfTextFragmentEnum(TypeOfTextFragment.TypeOfTextFragmentEnum typeOfTextFragmentEnum) {

@@ -15,5 +15,5 @@ public class Hashtag extends TextFragment implements Serializable {
     public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
         return TypeOfTextFragment.TypeOfTextFragmentEnum.HASHTAG;
     }
-
+    
 }

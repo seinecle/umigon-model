@@ -11,7 +11,6 @@ import net.clementlevallois.umigon.model.TypeOfTextFragment.TypeOfTextFragmentEn
  */
 public abstract class TextFragment {
 
-    private String string = "";
     private int indexCardinal;
     private int indexOrdinal;
     private int indexCardinalInSentence;
@@ -19,20 +18,22 @@ public abstract class TextFragment {
     private int length;
     private TypeOfTextFragmentEnum typeOfTextFragmentEnum;
 
-    public String getString() {
-        return string;
+    private String originalForm = "";
+
+    public String getOriginalForm() {
+        return originalForm;
     }
 
-    public void setString(String string) {
-        this.string = string;
+    public void setOriginalForm(String originalForm) {
+        this.originalForm = originalForm;
     }
 
-    public void addCharToString(char c) {
-        string = string + String.valueOf(c);
+    public void addCharToOriginalForm(char c) {
+        originalForm = originalForm + String.valueOf(c);
     }
 
-    public void addStringToString(String s) {
-        string = string + s;
+    public void addStringToOriginalForm(String s) {
+        originalForm = originalForm + s;
     }
 
     public int getIndexCardinal() {

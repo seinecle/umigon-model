@@ -11,7 +11,6 @@ import java.io.Serializable;
  */
 public class Term extends TextFragment implements Serializable {
 
-    private String originalForm;
     private String cleanedForm;
     private String cleanedAndStrippedForm;
 
@@ -19,7 +18,6 @@ public class Term extends TextFragment implements Serializable {
     public TypeOfTextFragment.TypeOfTextFragmentEnum getTypeOfTextFragmentEnum() {
         return TypeOfTextFragment.TypeOfTextFragmentEnum.TERM;
     }
-
 
     public String getCleanedForm() {
         return cleanedForm;
@@ -41,21 +39,13 @@ public class Term extends TextFragment implements Serializable {
         return stripped ? cleanedAndStrippedForm : cleanedForm;
     }
 
-    public String getOriginalForm() {
-        return originalForm;
-    }
-
-    public void setOriginalForm(String originalForm) {
-        this.originalForm = originalForm;
-    }
-    
     public NGram toNgram(){
         NGram ngram = new NGram();
         ngram.setIndexCardinal(this.getIndexCardinal());
         ngram.setIndexCardinal(this.getIndexCardinalInSentence());
         ngram.setIndexCardinal(this.getIndexOrdinal());
         ngram.setIndexCardinal(this.getIndexOrdinalInSentence());
-        ngram.setString(this.getString());
+        ngram.setOriginalForm(this.getOriginalForm());
         ngram.getTerms().add(this);
         return ngram;
     }
