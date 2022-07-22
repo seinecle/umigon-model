@@ -27,8 +27,11 @@ public class Document implements Serializable {
     private List<Decision> sentimentDecisions = new ArrayList();
     private String id;
     private boolean flaggedAsFalseLabel;
-    private String explanationSentiment;
-    private CategoryEnum categorizationResult;
+    private boolean showExplanation;
+    private String explanationHtml;
+    private String explanationPlainText;
+    private String categoryLocalizedPlainText;
+    private String categoryCode;
 
     public Document() {
     }
@@ -100,6 +103,14 @@ public class Document implements Serializable {
         this.id = id;
     }
 
+    public boolean isShowExplanation() {
+        return showExplanation;
+    }
+
+    public void setShowExplanation(boolean showExplanation) {
+        this.showExplanation = showExplanation;
+    }
+
     public boolean isFlaggedAsFalseLabel() {
         return flaggedAsFalseLabel;
     }
@@ -108,12 +119,20 @@ public class Document implements Serializable {
         this.flaggedAsFalseLabel = flaggedAsFalseLabel;
     }
 
-    public String getExplanationSentiment() {
-        return explanationSentiment;
+    public String getExplanationSentimentHtml() {
+        return explanationHtml;
     }
 
-    public void setExplanationSentiment(String explanationSentiment) {
-        this.explanationSentiment = explanationSentiment;
+    public void setExplanationSentimentHtml(String explanation) {
+        this.explanationHtml = explanation;
+    }
+
+    public String getExplanationPlainText() {
+        return explanationPlainText;
+    }
+
+    public void setExplanationPlainText(String explanationPlainText) {
+        this.explanationPlainText = explanationPlainText;
     }
 
     public List<Decision> getSentimentDecisions() {
@@ -124,6 +143,22 @@ public class Document implements Serializable {
         this.sentimentDecisions = sentimentDecisions;
     }
 
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getCategoryLocalizedPlainText() {
+        return categoryLocalizedPlainText;
+    }
+
+    public void setCategoryLocalizedPlainText(String categoryLocalizedPlainText) {
+        this.categoryLocalizedPlainText = categoryLocalizedPlainText;
+    }
+
     public CategoryEnum getCategorizationResult() {
         for (ResultOneHeuristics resultOneHeuristics : resultsHeuristics) {
             CategoryEnum categoryEnum = resultOneHeuristics.getCategoryEnum();
@@ -132,13 +167,8 @@ public class Document implements Serializable {
             // (after the decisions have been made).
             return categoryEnum;
         }
-        
+
         // return the "neutral" category if no heuristics has been found
         return CategoryEnum._10;
     }
-
-    public void setCategorizationResult(CategoryEnum categorizationResult) {
-        this.categorizationResult = categorizationResult;
-    }
-
 }
