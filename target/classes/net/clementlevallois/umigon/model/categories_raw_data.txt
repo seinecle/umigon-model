@@ -1,0 +1,60 @@
+//
+// *** 0 *** errors
+//
+9	not suitable for semantic analysis
+91	english text not detected
+92	text too short or garbled
+
+//
+// *** 1 *** tone
+//
+10	neutral tone
+11	positive tone
+111	positive tone, not promoted
+12	negative tone
+13	possibly ironic tone
+14	fun tone
+17	delight
+
+//
+// *** 2 *** intensity
+//
+20	neutral intensity
+21	weak intensity
+22	strong intensity
+
+//
+// *** 3 *** time
+//
+3	time
+30	neutral time
+31	past time
+311	immediate past
+320	present time
+321	immediate present: just now
+33	future time
+331	immediate future
+
+//
+// *** 4 *** question
+//
+40	question
+
+//
+// *** 5 *** type of address
+//
+50	neutral address
+51	subjective address
+52	direct address
+521	call to action
+
+//
+// *** 6 *** topic
+//
+60	neutral topic
+61	commercial tone / promoted
+611	commercial offer
+612	tweeted by the client
+6121	a retweet of the client's tweet
+62	factual statement
+621	factual statement - statistics cited
