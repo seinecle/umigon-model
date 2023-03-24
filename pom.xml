@@ -10,6 +10,8 @@
     <url>https://github.com/seinecle/umigon-family</url>
     <inceptionYear>2021</inceptionYear>
     
+    <name>umigon-model</name>
+    
     <!-- Licenses -->
     <licenses>
         <license>
@@ -22,9 +24,9 @@
 
     <!-- SCM -->
     <scm>
-        <connection>scm:git:git@github.com:seinecle/umigon-family.git</connection>
-        <developerConnection>scm:git:git@github.com:seinecle/umigon-family.git</developerConnection>
-        <url>https://github.com/seinecle/umigon-family</url>
+        <connection>scm:git:git@github.com:seinecle/umigon-model.git</connection>
+        <developerConnection>scm:git:git@github.com:seinecle/umigon-model.git</developerConnection>
+        <url>https://github.com/seinecle/umigon-model</url>
     </scm>
     
     <!-- Developers -->
@@ -32,7 +34,6 @@
         <developer>
             <id>seinecle</id>
             <name>Clement Levallois</name>
-            <email>clementlevallois@protonmail.com</email>
         </developer>
     </developers>
 
@@ -140,8 +141,8 @@
                                             <maven-central>
                                                 <active>ALWAYS</active>
                                                 <url>https://s01.oss.sonatype.org/service/local</url>;
-                                                <closeRepository>true</closeRepository>
-                                                <releaseRepository>true</releaseRepository>
+                                                <closeRepository>false</closeRepository>
+                                                <releaseRepository>false</releaseRepository>
                                                 <stagingRepositories>target/staging-deploy</stagingRepositories>
                                             </maven-central>
                                         </nexus2>
