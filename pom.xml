@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-        <groupId>net.clementlevallois.functions</groupId>
+    <groupId>net.clementlevallois.functions</groupId>
     <artifactId>umigon-model</artifactId>
-    <version>0.10</version>
+    <version>0.11</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,6 +15,7 @@
 
     <description>the data structure for text operations by the tools of umigon-family</description>
     <url>https://github.com/seinecle/umigon-model</url>
+    <inceptionYear>2021</inceptionYear>
     
     <!-- Licenses -->
     <licenses>
@@ -75,8 +76,17 @@
     <profiles>
         <profile>
             <id>release</id>
+            <properties>
+                <altDeploymentRepository>local::file:./target/staging-deploy</altDeploymentRepository>
+            </properties>            
             <build>
+                <defaultGoal>deploy</defaultGoal>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>3.1.0</version>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
@@ -126,6 +136,9 @@
                                 </signing>
                                 <deploy>
                                     <maven>
+                                        <pomchecker>
+                                            <version>1.9.0</version>
+                                        </pomchecker>
                                         <nexus2>
                                             <maven-central>
                                                 <active>ALWAYS</active>

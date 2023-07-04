@@ -4,6 +4,18 @@ Umigon is the name given to a coding project for sentiment analysis. With the pr
 
 umigon-model is the repo that contains the objects and other data structures that are used and shared between these different repos.
 
+## Installation
+
+```xml
+<dependency>
+	<groupId>net.clementlevallois.functions</groupId>
+	<artifcactId>umigon-model</artifactId>
+	<version>0.11</version>
+</dependency>
+```
+Or [check on Maven](https://central.sonatype.com/artifact/net.clementlevallois.functions/umigon-model) to see the latest version.
+
+
 # License
 See the [license](LICENSE.md) file. These data and code can be used for non commercial *and commercial* purposes.
 
