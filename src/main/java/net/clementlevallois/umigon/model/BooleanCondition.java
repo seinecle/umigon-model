@@ -57,6 +57,7 @@ public class BooleanCondition implements Serializable {
         isInHashtag,
         isHashtagPositiveSentiment,
         isHashtagNegativeSentiment,
+        isHashtagOrganic,
         isQuestionMarkAtEndOfText,
         isAllCaps,
         isPrecededByStrongWord,

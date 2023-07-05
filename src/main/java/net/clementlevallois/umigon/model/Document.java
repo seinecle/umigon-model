@@ -24,7 +24,7 @@ public class Document implements Serializable {
     private List<TextFragment> allTextFragments = new ArrayList();
     private List<NGram> ngrams = new ArrayList();
     private List<ResultOneHeuristics> resultsHeuristics = new ArrayList();
-    private List<Decision> sentimentDecisions = new ArrayList();
+    private List<Decision> decisions = new ArrayList();
     private String id;
     private boolean flaggedAsFalseLabel;
     private boolean showExplanation;
@@ -137,11 +137,11 @@ public class Document implements Serializable {
         this.flaggedAsFalseLabel = flaggedAsFalseLabel;
     }
 
-    public String getExplanationSentimentHtml() {
+    public String getExplanationHtml() {
         return explanationHtml;
     }
 
-    public void setExplanationSentimentHtml(String explanation) {
+    public void setExplanationHtml(String explanation) {
         this.explanationHtml = explanation;
     }
 
@@ -153,12 +153,12 @@ public class Document implements Serializable {
         this.explanationPlainText = explanationPlainText;
     }
 
-    public List<Decision> getSentimentDecisions() {
-        return sentimentDecisions;
+    public List<Decision> getDecisions() {
+        return decisions;
     }
 
-    public void setSentimentDecisions(List<Decision> sentimentDecisions) {
-        this.sentimentDecisions = sentimentDecisions;
+    public void setDecisions(List<Decision> sentimentDecisions) {
+        this.decisions = sentimentDecisions;
     }
 
     public String getCategoryCode() {
