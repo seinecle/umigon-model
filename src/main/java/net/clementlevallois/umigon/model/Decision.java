@@ -39,7 +39,8 @@ public class Decision implements Serializable {
         WINNER_TAKES_ALL,
         FINAL_ADJUDICATION_NEGATIVE_SENTIMENT_PREVAILS,
         EXCLAMATION_MARKS_ENDING_SHORT_NEUTRAL_SENTENCES,
-        QUESTION_MARK_FOLLOWED_BY_EXCLAMATION_MARKS
+        QUESTION_MARK_FOLLOWED_BY_EXCLAMATION_MARKS,
+        ENDING_IN_QUESTION_MARK
     }
 
     public ResultOneHeuristics getOtherHeuristicsInvolvedInDecision() {

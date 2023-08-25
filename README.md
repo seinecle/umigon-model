@@ -10,7 +10,7 @@ umigon-model is the repo that contains the objects and other data structures tha
 <dependency>
 	<groupId>net.clementlevallois.functions</groupId>
 	<artifcactId>umigon-model</artifactId>
-	<version>0.11</version>
+	<version>0.13</version>
 </dependency>
 ```
 Or [check on Maven](https://central.sonatype.com/artifact/net.clementlevallois.functions/umigon-model) to see the latest version.
