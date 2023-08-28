@@ -2,7 +2,7 @@
 @packages
 @argfile
 --module-path
-'C:/Users/levallois/open/nocode-app-functions/umigon-model/target/umigon-model-0.13.jar'
+'C:/Users/levallois/open/nocode-app-functions/umigon-model/target/umigon-model-0.14.jar'
 --patch-module
 net.clementlevallois.umigon.model='C:/Users/levallois/open/nocode-app-functions/umigon-model/src/main/java;C:/Users/levallois/open/nocode-app-functions/umigon-model/target/generated-sources/annotations'
 -encoding
@@ -22,32 +22,32 @@ net.clementlevallois.umigon.model='C:/Users/levallois/open/nocode-app-functions/
 -docencoding
 'UTF-8'
 -doctitle
-'umigon-model 0.13 API'
+'umigon-model 0.14 API'
 -linkoffline
 'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/levallois/open/nocode-app-functions/umigon-model/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'umigon-model 0.13 API'
+'umigon-model 0.14 API'
 net.clementlevallois.umigon.model
 'C:/Users/levallois/open/nocode-app-functions/umigon-model/src/main/java/module-info.java'
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\allclasses-index.html = 1692962421196
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\allpackages-index.html = 1692962421205
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\copy.svg = 1692962421321
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\element-list = 1692962420909
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\help-doc.html = 1692962421298
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\index-all.html = 1692962421256
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\index.html = 1692962421288
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\jquery-ui.overrides.css = 1692962421375
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\member-search-index.js = 1692962421222
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\module-search-index.js = 1692962421211
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\overview-tree.html = 1692962421170
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\package-search-index.js = 1692962421214
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\script.js = 1692962421312
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search-page.js = 1692962421332
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search.html = 1692962421280
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search.js = 1692962421325
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\serialized-form.html = 1692962420962
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\stylesheet.css = 1692962421306
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\tag-search-index.js = 1692962421229
-C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\type-search-index.js = 1692962421218
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\allclasses-index.html = 1693212220525
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\allpackages-index.html = 1693212220534
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\copy.svg = 1693212220621
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\element-list = 1693212220313
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\help-doc.html = 1693212220603
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\index-all.html = 1693212220574
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\index.html = 1693212220593
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\jquery-ui.overrides.css = 1693212220665
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\member-search-index.js = 1693212220551
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\module-search-index.js = 1693212220540
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\overview-tree.html = 1693212220506
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\package-search-index.js = 1693212220544
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\script.js = 1693212220615
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search-page.js = 1693212220632
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search.html = 1693212220588
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\search.js = 1693212220626
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\serialized-form.html = 1693212220367
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\stylesheet.css = 1693212220610
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\tag-search-index.js = 1693212220558
+C:\Users\levallois\open\nocode-app-functions\umigon-model\target\apidocs\type-search-index.js = 1693212220548
