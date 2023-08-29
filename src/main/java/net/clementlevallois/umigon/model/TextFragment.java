@@ -12,7 +12,6 @@ import net.clementlevallois.umigon.model.TypeOfTextFragment.TypeOfTextFragmentEn
  * @author LEVALLOIS
  */
 public abstract class TextFragment implements Serializable
-//        implements Comparable<TextFragment> 
 {
 
     private int indexCardinal;

@@ -11,8 +11,8 @@ import java.util.List;
  *
  * @author LEVALLOIS
  */
-public class SentenceLike  implements Serializable{
-    
+public class SentenceLike implements Serializable {
+
     private List<NGram> ngrams = new ArrayList();
     private List<TextFragment> textFragments = new ArrayList();
     private int indexOrdinal;
@@ -49,7 +49,14 @@ public class SentenceLike  implements Serializable{
     public void setIndexCardinal(int indexCardinal) {
         this.indexCardinal = indexCardinal;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (TextFragment tf : textFragments) {
+            sb.append(tf.getOriginalForm());
+        }
+        return sb.toString();
+    }
+
 }
