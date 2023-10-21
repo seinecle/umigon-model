@@ -1,4 +1,0 @@
---patch-module
-net.clementlevallois.umigon.model=_
---add-reads
-net.clementlevallois.umigon.model=ALL-UNNAMED

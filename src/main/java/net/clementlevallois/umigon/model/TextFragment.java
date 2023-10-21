@@ -20,6 +20,7 @@ public abstract class TextFragment implements Serializable
     private int indexOrdinalInSentence;
     private int length;
     private TypeOfTextFragmentEnum typeOfTextFragmentEnum;
+    private int sentenceLikeFragmentIndex;
 
     private String originalForm = "";
     private String originalFormLemmatized = "";
@@ -91,7 +92,14 @@ public abstract class TextFragment implements Serializable
     public void setOriginalFormLemmatized(String originalFormLemmatized) {
         this.originalFormLemmatized = originalFormLemmatized;
     }
-    
+
+    public int getSentenceLikeFragmentIndex() {
+        return sentenceLikeFragmentIndex;
+    }
+
+    public void setSentenceLikeFragmentIndex(int sentenceLikeFragmentIndex) {
+        this.sentenceLikeFragmentIndex = sentenceLikeFragmentIndex;
+    }    
     
     @Override
     public int hashCode() {
